@@ -1,5 +1,6 @@
 package newodoo.service;
 
+import newodoo.dto.ProjectDTO;
 import newodoo.repository.ProjectRepository;
 import newodoo.entity.ProjectEntity;
 import org.springframework.beans.BeanUtils;
@@ -30,9 +31,11 @@ public class ProjectService {
         return projectRepository.findById(id).orElseThrow();
     }
 
-    public ProjectEntity updateProject(Long id, ProjectEntity projectEntityUpdate) {
+    public ProjectEntity updateProject(Long id, ProjectDTO projectDTO) {
         ProjectEntity projectEntity = findById(id);
-        BeanUtils.copyProperties(projectEntityUpdate, projectEntity, getNullPropertyNames(projectEntityUpdate));
+        projectDTO.setId(projectEntity.getId());
+
+        BeanUtils.copyProperties(projectDTO, projectEntity, getNullPropertyNames(projectDTO));
         return projectRepository.save(projectEntity);
 
     }
