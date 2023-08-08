@@ -1,6 +1,5 @@
 package newodoo.service;
 
-import newodoo.Exceptions.ProjectNotFoundException;
 import newodoo.Repository.ProjectRepository;
 import newodoo.entity.ProjectEntity;
 import org.springframework.beans.BeanUtils;

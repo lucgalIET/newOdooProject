@@ -1,6 +1,7 @@
 package newodoo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -33,4 +34,8 @@ public class ProgramEntity {
     // Attributo nella classe Project che fa riferimento a program
     @JsonBackReference
     private List<ProjectEntity> projects;
+
+    @Column(name = "deleted", nullable = false, columnDefinition = "bit default 0")
+    @JsonIgnore
+    private boolean deleted;
 }

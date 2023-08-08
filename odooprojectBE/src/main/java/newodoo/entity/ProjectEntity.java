@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.List;
