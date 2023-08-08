@@ -23,20 +23,20 @@ public class SubProjectEntity {
     private String country;
     @Size(max = 255)
     @Column(name="project_type")
-    private String project_type;
+    private String projectType;
     @Size(max = 255)
     @Column(name="project_name")
-    private String project_name;
+    private String projectName;
     @Column(name="presumed_starting_month")
-    private Date presumed_starting_month;
+    private Date presumedStartingMonth;
     @Column(name="presumed_end_month")
-    private Date presumed_end_month;
+    private Date presumedEndMonth;
     @Size(max = 255)
     @Column(name="link_dir_business_onedrive")
-    private String link_dir_business_onedrive;
+    private String linkDirBusinessOnedrive;
     @Size(max = 255)
     @Column(name="link_dir_operative_onedrive")
-    private String link_dir_operative_onedrive;
+    private String linkDirOperativeOnedrive;
 
     @ManyToOne
     @JoinColumn(name="id_project")
