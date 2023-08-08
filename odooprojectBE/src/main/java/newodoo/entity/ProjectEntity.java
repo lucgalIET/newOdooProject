@@ -1,11 +1,13 @@
 package newodoo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="project")
@@ -58,4 +60,9 @@ public class ProjectEntity {
     @ManyToOne
     @JoinColumn(name="id_program")
     private ProgramEntity idProgram;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idProject")
+    // Attributo nella classe Project che fa riferimento a program
+    @JsonBackReference
+    private List<SubProjectEntity> subProjects;
 }

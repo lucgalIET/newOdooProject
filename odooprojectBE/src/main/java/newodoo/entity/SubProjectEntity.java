@@ -37,6 +37,8 @@ public class SubProjectEntity {
     @Size(max = 255)
     @Column(name="link_dir_operative_onedrive")
     private String link_dir_operative_onedrive;
-    @Column(name="id_project")
-    private Long id_project;
+
+    @ManyToOne
+    @JoinColumn(name="id_project")
+    private ProjectEntity idProject;
 }
