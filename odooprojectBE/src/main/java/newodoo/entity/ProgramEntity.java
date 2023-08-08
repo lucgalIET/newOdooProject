@@ -1,5 +1,6 @@
 package newodoo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,7 +14,8 @@ public class ProgramEntity{
     private String programManager;
     private Long idCoo;
 
-    @OneToMany(mappedBy = "program") // Attributo nella classe Project che fa riferimento a program
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "program") // Attributo nella classe Project che fa riferimento a program
+    @JsonBackReference
     private List<ProjectEntity> projects;
 
     // Costruttore vuoto
