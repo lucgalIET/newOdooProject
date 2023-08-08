@@ -2,7 +2,6 @@ package newodoo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
@@ -38,7 +37,7 @@ public class SubProjectEntity {
 
     @Column(name = "link_dir_business_onedrive")
     private String linkDirBusinessOnedrive;
-    
+
     @Column(name = "link_dir_operative_onedrive")
     private String linkDirOperativeOnedrive;
 

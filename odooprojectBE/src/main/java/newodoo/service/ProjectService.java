@@ -18,15 +18,19 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    public ProjectEntity saveProject(ProjectEntity projectEntity){return projectRepository.save(projectEntity);}
+    public ProjectEntity saveProject(ProjectEntity projectEntity) {
+        return projectRepository.save(projectEntity);
+    }
 
-    public List<ProjectEntity> getAllProject(){return projectRepository.findAll();}
+    public List<ProjectEntity> getAllProject() {
+        return projectRepository.findAll();
+    }
 
-    public ProjectEntity findById(Long id){
+    public ProjectEntity findById(Long id) {
         return projectRepository.findById(id).orElseThrow();
     }
 
-    public ProjectEntity updateProject(Long id, ProjectEntity projectEntityUpdate){
+    public ProjectEntity updateProject(Long id, ProjectEntity projectEntityUpdate) {
         ProjectEntity projectEntity = findById(id);
         BeanUtils.copyProperties(projectEntityUpdate, projectEntity, getNullPropertyNames(projectEntityUpdate));
         return projectRepository.save(projectEntity);
@@ -41,7 +45,7 @@ public class ProjectService {
                 .toArray(String[]::new);
     }
 
-    public void deleteProject(Long id){
+    public void deleteProject(Long id) {
         ProjectEntity projectEntity = projectRepository.findById(id).orElseThrow();
         projectEntity.setDeleted(true);
         projectRepository.save(projectEntity);

@@ -16,22 +16,29 @@ import java.util.stream.Stream;
 public class ProgramService {
     @Autowired
     private ProgramRepository programRepository;
+
     //aggiungi un programma (C)
     //trova un programma (R)
     //aggiorna un programma (U)
     //cancella un programma (D)
-    public ProgramEntity saveProgram(ProgramEntity program){
+    public ProgramEntity saveProgram(ProgramEntity program) {
         return programRepository.save(program);
     }
-    public List<ProgramEntity> getAllPrograms(){return programRepository.findAll();}
-    public ProgramEntity findById(Long id){
+
+    public List<ProgramEntity> getAllPrograms() {
+        return programRepository.findAll();
+    }
+
+    public ProgramEntity findById(Long id) {
         return programRepository.findById(id).orElseThrow();
     }
-    public ProgramEntity updateProgram(Long id, ProgramEntity programEntityUpdate){
+
+    public ProgramEntity updateProgram(Long id, ProgramEntity programEntityUpdate) {
         ProgramEntity programEntity = findById(id);
         BeanUtils.copyProperties(programEntityUpdate, programEntity, getNullPropertyNames(programEntityUpdate));
         return programRepository.save(programEntity);
     }
+
     private String[] getNullPropertyNames(Object source) {
         final BeanWrapper src = new BeanWrapperImpl(source);
         return Stream.of(src.getPropertyDescriptors())
@@ -39,7 +46,8 @@ public class ProgramService {
                 .filter(propertyName -> src.getPropertyValue(propertyName) == null)
                 .toArray(String[]::new);
     }
-    public void deleteProgram(Long id){
+
+    public void deleteProgram(Long id) {
         ProgramEntity programEntity = programRepository.findById(id).orElseThrow();
         programEntity.setDeleted(true);
         programRepository.save(programEntity);

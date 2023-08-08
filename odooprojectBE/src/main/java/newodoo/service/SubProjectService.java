@@ -15,15 +15,19 @@ public class SubProjectService {
     @Autowired
     private SubProjectRepository subProjectRepository;
 
-    public SubProjectEntity saveSubProject(SubProjectEntity subprojectEntity){return subProjectRepository.save(subprojectEntity);}
+    public SubProjectEntity saveSubProject(SubProjectEntity subprojectEntity) {
+        return subProjectRepository.save(subprojectEntity);
+    }
 
-    public List<SubProjectEntity> getAllSubProject(){return subProjectRepository.findAll();}
+    public List<SubProjectEntity> getAllSubProject() {
+        return subProjectRepository.findAll();
+    }
 
-    public SubProjectEntity findById(Long id){
+    public SubProjectEntity findById(Long id) {
         return subProjectRepository.findById(id).orElseThrow();
     }
 
-    public SubProjectEntity updateSubProject(Long id, SubProjectEntity subProjectEntityUpdate){
+    public SubProjectEntity updateSubProject(Long id, SubProjectEntity subProjectEntityUpdate) {
         SubProjectEntity subProjectEntity = findById(id);
         BeanUtils.copyProperties(subProjectEntityUpdate, subProjectEntity, getNullPropertyNames(subProjectEntityUpdate));
         return subProjectRepository.save(subProjectEntity);
@@ -38,7 +42,7 @@ public class SubProjectService {
                 .toArray(String[]::new);
     }
 
-    public void deleteProject(Long id){
+    public void deleteProject(Long id) {
         SubProjectEntity subProjectEntity = subProjectRepository.findById(id).orElseThrow();
         subProjectEntity.setDeleted(true);
         subProjectRepository.save(subProjectEntity);
