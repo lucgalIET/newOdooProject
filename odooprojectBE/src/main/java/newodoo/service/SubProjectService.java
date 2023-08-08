@@ -21,13 +21,13 @@ public class SubProjectService {
     public List<SubProjectEntity> getAllSubProject(){return subProjectRepository.findAll();}
 
     public SubProjectEntity findById(Long id){
-        return projectRepository.findById(id).orElseThrow();
+        return subProjectRepository.findById(id).orElseThrow();
     }
 
-    public ProjectEntity updateProject(Long id, ProjectEntity projectEntityUpdate){
-        ProjectEntity projectEntity = findById(id);
-        BeanUtils.copyProperties(projectEntityUpdate, projectEntity, getNullPropertyNames(projectEntityUpdate));
-        return projectRepository.save(projectEntity);
+    public SubProjectEntity updateSubProject(Long id, SubProjectEntity subProjectEntityUpdate){
+        SubProjectEntity subProjectEntity = findById(id);
+        BeanUtils.copyProperties(subProjectEntityUpdate, subProjectEntity, getNullPropertyNames(subProjectEntityUpdate));
+        return subProjectRepository.save(subProjectEntity);
 
     }
 
@@ -40,8 +40,8 @@ public class SubProjectService {
     }
 
     public void deleteProject(Long id){
-        ProjectEntity projectEntity = projectRepository.findById(id).orElseThrow();
-        projectEntity.setDeleted(true);
-        projectRepository.save(projectEntity);
+        SubProjectEntity subProjectEntity = subProjectRepository.findById(id).orElseThrow();
+        subProjectEntity.setDeleted(true);
+        subProjectRepository.save(subProjectEntity);
     }
 }
