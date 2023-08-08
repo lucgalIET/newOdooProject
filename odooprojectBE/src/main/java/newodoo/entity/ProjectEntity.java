@@ -57,5 +57,5 @@ public class ProjectEntity {
 
     @ManyToOne
     @JoinColumn(name="id_program")
-    private Long idProgram;
+    private ProgramEntity idProgram;
 }

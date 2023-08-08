@@ -19,7 +19,7 @@ public class ProgramEntity{
     @Column(name="id_coo")
     private Long idCoo;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "program") // Attributo nella classe Project che fa riferimento a program
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idProgram") // Attributo nella classe Project che fa riferimento a program
     @JsonBackReference
     private List<ProjectEntity> projects;
 
