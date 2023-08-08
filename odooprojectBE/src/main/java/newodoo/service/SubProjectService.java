@@ -1,7 +1,6 @@
 package newodoo.service;
 
-import newodoo.Repository.SubProjectRepository;
-import newodoo.entity.ProjectEntity;
+import newodoo.repository.SubProjectRepository;
 import newodoo.entity.SubProjectEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;

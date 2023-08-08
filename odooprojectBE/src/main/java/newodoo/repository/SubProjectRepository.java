@@ -1,4 +1,4 @@
-package newodoo.Repository;
+package newodoo.repository;
 
 import newodoo.entity.SubProjectEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -9,7 +9,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name="program")
+@Table(name = "program")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,12 +21,13 @@ public class ProgramEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "name")
-    @Size(max = 255)
     private String name;
+
     @Column(name = "program_manager")
-    @Size(max = 255)
     private String programManager;
+
     @Column(name = "id_coo")
     private Long idCoo;
 

@@ -1,4 +1,4 @@
-package newodoo.Controller;
+package newodoo.controller;
 
 import org.springframework.stereotype.Controller;
 
