@@ -27,6 +27,7 @@ CREATE TABLE `program` (
   `name` varchar(255) NOT NULL,
   `program_manager` varchar(255) DEFAULT NULL,
   `id_coo` int DEFAULT NULL,
+  `deleted` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -61,6 +62,7 @@ CREATE TABLE `project` (
   `link_gitlab` varchar(255) DEFAULT NULL,
   `link_logbook` varchar(255) DEFAULT NULL,
   `id_program` int DEFAULT NULL,
+  `deleted` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_program_idx` (`id_program`),
   CONSTRAINT `id_program` FOREIGN KEY (`id_program`) REFERENCES `program` (`id`)
@@ -93,6 +95,7 @@ CREATE TABLE `sub_project` (
   `link_dir_business_onedrive` varchar(255) DEFAULT NULL,
   `link_dir_operative_onedrive` varchar(255) DEFAULT NULL,
   `id_project` int DEFAULT NULL,
+  `deleted` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_project` (`id_project`),
   CONSTRAINT `sub_project_ibfk_1` FOREIGN KEY (`id_project`) REFERENCES `project` (`id`)
@@ -117,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-08 11:40:19
+-- Dump completed on 2023-08-08 15:55:20
