@@ -1,28 +1,26 @@
 package newodoo.service;
 
-import newodoo.Repository.ProjectRepository;
+import newodoo.Repository.SubProjectRepository;
 import newodoo.entity.ProjectEntity;
+import newodoo.entity.SubProjectEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.beans.FeatureDescriptor;
 import java.util.List;
 import java.util.stream.Stream;
 
-@Service
-public class ProjectService {
-
+public class SubProjectService {
     @Autowired
-    private ProjectRepository projectRepository;
+    private SubProjectRepository subProjectRepository;
 
-    public ProjectEntity saveProject(ProjectEntity projectEntity){return projectRepository.save(projectEntity);}
+    public SubProjectEntity saveSubProject(SubProjectEntity subprojectEntity){return subProjectRepository.save(subprojectEntity);}
 
-    public List<ProjectEntity> getAllProject(){return projectRepository.findAll();}
+    public List<SubProjectEntity> getAllSubProject(){return subProjectRepository.findAll();}
 
-    public ProjectEntity findById(Long id){
+    public SubProjectEntity findById(Long id){
         return projectRepository.findById(id).orElseThrow();
     }
 
@@ -46,5 +44,4 @@ public class ProjectService {
         projectEntity.setDeleted(true);
         projectRepository.save(projectEntity);
     }
-
 }
