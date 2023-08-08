@@ -1,9 +1,8 @@
 package newodoo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class ProgramEntity{
@@ -13,6 +12,9 @@ public class ProgramEntity{
     private String name;
     private String programManager;
     private Long idCoo;
+
+    @OneToMany(mappedBy = "program") // Attributo nella classe Project che fa riferimento a program
+    private List<ProjectEntity> projects;
 
     // Costruttore vuoto
     public ProgramEntity() {

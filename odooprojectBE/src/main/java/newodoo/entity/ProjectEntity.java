@@ -55,6 +55,7 @@ public class ProjectEntity {
     @Column(name="link_logbook")
     private String linkLogbook;
 
-    @Column(name="id_program")
+    @ManyToOne
+    @JoinColumn(name="id_program")
     private Long idProgram;
 }
