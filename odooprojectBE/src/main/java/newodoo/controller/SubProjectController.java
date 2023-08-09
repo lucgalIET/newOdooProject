@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/api/subProject")
+@CrossOrigin(origins = "*")
 public class SubProjectController {
     @Autowired
     private SubProjectService subProjectService;

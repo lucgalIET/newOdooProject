@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/api/program")
+@CrossOrigin(origins = "*")
 public class ProgramController {
     @Autowired
     private ProgramService programService;
