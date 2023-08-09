@@ -5,20 +5,49 @@ import newodoo.entity.ProjectEntity;
 import newodoo.service.ProjectService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(path="/api/project")
+@CrossOrigin(origins = "*")
 public class ProjectController {
+
+    @Autowired
     private ProjectService projectService;
     private ModelMapper modelMapper;
 
     @Autowired
     public ProjectController(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
+    }
+
+    @PostMapping("")
+    public ResponseEntity<ProjectDTO>addProject(@RequestBody ProjectDTO projectDTO){
+        ProjectEntity projectEntity=modelMapper.map(projectDTO, ProjectEntity.class);
+        ProjectEntity projectEntity1=projectService.saveProject(projectEntity);
+        ProjectDTO projectDTO1=modelMapper.map(projectEntity1, ProjectDTO.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(projectDTO1);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<ProjectDTO>>getAllProject(){
+        List<ProjectEntity> projectEntities=projectService.getAllProject();
+        List<ProjectDTO> projectDTOs=projectEntities.stream()
+                .map(project->modelMapper.map(project, ProjectDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(projectDTOs);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProjectDTO>getProjectById(@PathVariable Long id){
+        ProjectEntity projectEntity=projectService.findById(id);
+        ProjectDTO projectDTO=modelMapper.map(projectEntity, ProjectDTO.class);
+        return ResponseEntity.ok(projectDTO);
     }
 
     @PatchMapping("/{id}")
@@ -29,5 +58,11 @@ public class ProjectController {
         ProjectDTO projectDTO1 = modelMapper.map(projectEntity, ProjectDTO.class);
 
         return ResponseEntity.ok(projectDTO1);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String>deleteProject(@PathVariable Long id){
+        projectService.deleteProject(id);
+        return ResponseEntity.ok("Project " + id + " deleted");
     }
 }
