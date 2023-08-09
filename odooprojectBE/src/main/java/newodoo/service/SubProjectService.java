@@ -19,7 +19,7 @@ public class SubProjectService {
         return subProjectRepository.save(subprojectEntity);
     }
 
-    public List<SubProjectEntity> getAllSubProject() {
+    public List<SubProjectEntity> getAllSubProjects() {
         return subProjectRepository.findAll();
     }
 
@@ -42,7 +42,7 @@ public class SubProjectService {
                 .toArray(String[]::new);
     }
 
-    public void deleteProject(Long id) {
+    public void deleteSubProject(Long id) {
         SubProjectEntity subProjectEntity = subProjectRepository.findById(id).orElseThrow();
         subProjectEntity.setDeleted(true);
         subProjectRepository.save(subProjectEntity);
