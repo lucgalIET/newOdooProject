@@ -1,6 +1,8 @@
 package newodoo.dto;
 
 import lombok.*;
+import newodoo.entity.ProgramEntity;
+import newodoo.entity.SubProjectEntity;
 
 import java.time.LocalDate;
 
@@ -21,4 +23,8 @@ public class ProjectDTO {
     private String linkTrello;
     private String linkGitlab;
     private String linkLogbook;
+
+    private ProgramEntity idProgram;
+
+    private SubProjectEntity subProject;
 }

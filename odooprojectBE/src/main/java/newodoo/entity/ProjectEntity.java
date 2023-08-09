@@ -2,6 +2,7 @@ package newodoo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
@@ -63,7 +64,6 @@ public class ProjectEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idProject")
     // Attributo nella classe Project che fa riferimento a program
-    @JsonBackReference
     private List<SubProjectEntity> subProjects;
 
     @Column(name = "deleted", nullable = false, columnDefinition = "bit default 0")

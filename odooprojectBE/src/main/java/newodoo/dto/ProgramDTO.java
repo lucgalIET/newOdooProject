@@ -11,6 +11,6 @@ import java.time.LocalDate;
 public class ProgramDTO {
     private Long id;
     private String name;
-    private String program_manager;
-    private Long id_coo;
+    private String programManager;
+    private Long idCoo;
 }

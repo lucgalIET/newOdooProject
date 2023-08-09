@@ -12,10 +12,10 @@ import java.util.Date;
 public class SubProjectDTO {
     private Long id;
     private String country;
-    private String project_type;
-    private String project_name;
-    private Date presumed_starting_month;
-    private Date presumed_end_month;
-    private String link_dir_business_onedrive;
-    private String link_dir_operative_onedrive;
+    private String projectType;
+    private String projectName;
+    private Date presumedStartingMonth;
+    private Date presumedEndMonth;
+    private String linkDirBusinessOnedrive;
+    private String linkDirOperativeOnedrive;
 }

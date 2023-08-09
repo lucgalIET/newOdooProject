@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/api/subProject")
+@RequestMapping(path = "/api/subproject")
 @CrossOrigin(origins = "*")
 public class SubProjectController {
     @Autowired
