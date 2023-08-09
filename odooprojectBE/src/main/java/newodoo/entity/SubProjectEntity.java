@@ -3,6 +3,7 @@ package newodoo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import java.util.Date;
 @Setter
 @EqualsAndHashCode
 @ToString
+@Where(clause = "deleted = 0")
 public class SubProjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
