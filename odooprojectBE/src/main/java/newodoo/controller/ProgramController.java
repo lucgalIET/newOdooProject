@@ -27,7 +27,7 @@ public class ProgramController {
     @PostMapping("")
     public ResponseEntity<ProgramDTO>addProgram(@RequestBody ProgramDTO programDTO){
         ProgramEntity programEntity = modelMapper.map(programDTO, ProgramEntity.class);
-        ProgramEntity programEntity1=programService.saveProgram(programEntity);
+        ProgramEntity programEntity1 = programService.saveProgram(programEntity);
         ProgramDTO programDTO1 = modelMapper.map(programEntity1, ProgramDTO.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(programDTO1);
     }
