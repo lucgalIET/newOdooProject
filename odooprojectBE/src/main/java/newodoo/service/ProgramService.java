@@ -1,5 +1,6 @@
 package newodoo.service;
 
+import newodoo.dto.ProgramDTO;
 import newodoo.repository.ProgramRepository;
 import newodoo.entity.ProgramEntity;
 import org.springframework.beans.BeanUtils;
@@ -33,7 +34,7 @@ public class ProgramService {
         return programRepository.findById(id).orElseThrow();
     }
 
-    public ProgramEntity updateProgram(Long id, ProgramEntity programEntityUpdate) {
+    public ProgramEntity updateProgram(Long id, ProgramDTO programEntityUpdate) {
         ProgramEntity programEntity = findById(id);
         BeanUtils.copyProperties(programEntityUpdate, programEntity, getNullPropertyNames(programEntityUpdate));
         return programRepository.save(programEntity);
