@@ -5,6 +5,7 @@ import newodoo.entity.ProgramEntity;
 import newodoo.entity.SubProjectEntity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class ProjectDTO {
     private String linkGitlab;
     private String linkLogbook;
 
-    private ProgramEntity idProgram;
+    //private ProgramEntity idProgram;
 
-    private SubProjectEntity subProject;
+    private List<SubProjectEntity> subProjects;
 }

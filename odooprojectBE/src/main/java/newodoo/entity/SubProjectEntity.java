@@ -45,6 +45,7 @@ public class SubProjectEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_project")
+    @JsonIgnore
     private ProjectEntity idProject;
 
     @Column(name = "deleted", nullable = false, columnDefinition = "bit default 0")

@@ -34,7 +34,7 @@ public class ProjectController {
         return ResponseEntity.status(HttpStatus.CREATED).body(projectDTO1);
     }
 
-    @GetMapping("")
+   @GetMapping("")
     public ResponseEntity<List<ProjectDTO>>getAllProject(){
         List<ProjectEntity> projectEntities=projectService.getAllProject();
         List<ProjectDTO> projectDTOs=projectEntities.stream()

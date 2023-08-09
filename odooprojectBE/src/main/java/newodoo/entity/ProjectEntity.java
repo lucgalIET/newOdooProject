@@ -60,6 +60,7 @@ public class ProjectEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_program")
+    @JsonIgnore
     private ProgramEntity idProgram;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idProject")
