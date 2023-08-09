@@ -1,0 +1,148 @@
+.header{
+    width: 100%;
+    height: 130px;
+    background-color: white;
+    margin-top: 51px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titolo{
+    padding-top: 0.5px;
+    margin-left: 20px;
+    font-size: 15.5px;
+}
+
+.titolo h2{
+    color: rgb(188, 188, 188);
+}
+
+.pulsanti{
+    padding-top: 15px;
+    margin-left: 20px;
+}
+
+.pulsanti .btn{
+    background-color: white;
+    height: 30px;
+    border: solid 0.5px black;
+    font-weight: 600;
+}
+
+.cerca input{
+    margin-top: 24px;
+    width: 800px;
+    height: 18px;
+}
+
+.filtri{
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn2{
+    background-color: white;
+    height: 24px;
+    border: solid 0.8px rgba(101, 101, 101, 0.384);
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.body{
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.bar{
+    display: flex;
+    background-color: #EEEEEE;
+    height: 35px;
+    align-items: center;
+}
+
+.project{
+    flex-basis: 50%;
+    margin-left: 10px;
+}
+
+.project input{
+    transform: scale(1.6);
+}
+
+.project p{
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.project .div{
+    display: flex;
+}
+
+.project .hr{
+    margin-top: 7px;
+    margin-left: 10px;
+    background-color: rgb(188, 188, 188);
+    width: 1px;
+    height: 35px;
+}
+
+.hr1{
+    background-color: rgb(188, 188, 188);
+    width: 1px;
+    height: 35px;
+}
+
+.role{
+    flex-basis: 15%;
+}
+
+.role span{
+    margin-left: 8px;
+}
+
+details{
+    margin-top: 20px;
+}
+
+details summary{
+    display: flex;
+    list-style-type: none;
+    padding: 10px;
+    width: 100%-10;
+    /* background-color: bisque; */
+    background-image: linear-gradient(to top, #b3b3b3c8 25%, #f4f4f4);
+    cursor: pointer;
+}
+
+.dettaglio{
+    /* background-color: blanchedalmond; */
+    border-bottom: solid 1px rgb(145, 145, 145);
+    height: 45px;
+    margin-bottom: -5px;
+    display: flex;
+}
+
+.checkbox{
+    flex-basis: 51.33%;
+}
+
+.checkbox input{
+    transform: scale(1.32);
+    margin-left: 20px;
+}
+
+.checkbox p{
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.details{
+    margin-top: 10px;
+}
+
+.analista{
+    flex-basis: 15.18%;
+}

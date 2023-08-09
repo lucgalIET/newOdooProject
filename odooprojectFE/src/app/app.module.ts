@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './componenti/navbar/navbar.component';
 import { MieAttivitaImportaComponent } from './componenti/mie-attivita-importa/mie-attivita-importa.component';
 import { MieAttivitaComponent } from './componenti/mie-attivita/mie-attivita.component';
+import { MieiProgettiComponent } from './componenti/miei-progetti/miei-progetti.component';
+import { AssignmentsComponent } from './componenti/assignments/assignments.component';
+import { AssignmentsProgettoComponent } from './componenti/assignments-progetto/assignments-progetto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     MieAttivitaImportaComponent,
-    MieAttivitaComponent
+    MieAttivitaComponent,
+    MieiProgettiComponent,
+    AssignmentsComponent,
+    AssignmentsProgettoComponent
   ],
   imports: [
     BrowserModule,

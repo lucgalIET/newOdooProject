@@ -1,0 +1,116 @@
+.header{
+    width: 100%;
+    height: 130px;
+    background-color: white;
+    margin-top: 51px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titolo{
+    padding-top: 0.5px;
+    margin-left: 20px;
+    font-size: 15.5px;
+}
+
+.assignments{
+    color: rgb(188, 188, 188);
+}
+
+.section{
+    width: 100%;
+    /* height: 130px; */
+    background-color: white;
+    /* margin-top: 51px; */
+    border-bottom: 1px solid black;
+    display: flex;
+}
+
+.section .lista1{
+    margin-bottom: 17px;
+    font-weight: 600;
+    margin-left: -19px;
+    cursor: default;
+}
+
+.section .hr{
+    margin-left: 150px;
+    margin-top: 19px;
+    border-left: solid 1px rgb(188, 188, 188);
+    /* background-color: rgb(188, 188, 188); */
+    width: 1px;
+    height: 110px;
+}
+
+.section .lista2{
+    margin-left: -22px;
+}
+
+.section .lista2 ul li a{
+    text-decoration: none;
+    color: #213F6A;
+}
+
+.section ul li{
+    list-style-type: none;
+    padding-top: 12px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.body{
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.flexbox{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: bisque; */
+    width: 1400px;
+}
+
+.azioni ul{
+    display: flex;
+    margin-left: 160px;
+}
+
+.azioni ul li{
+    margin-left: 40px;
+    list-style-type: none;
+}
+
+.azioni ul li a{
+    text-decoration: none;
+    color: #213F6A;
+    font-size: 14px;
+}
+
+.segui{
+    display: flex;
+    margin-top: 4px;
+}
+
+.segui p{
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.riquadro{
+    margin-left: 220px;
+    margin-top: 5px;
+    width: 1200px;
+    height: 250px;
+    background-color: rgb(225, 225, 225);
+}
+
+.riquadro textarea{
+    margin-left: 48px;
+    margin-top: 32px;
+    width: 1100px;
+    height: 180px;
+    resize: none;
+}
