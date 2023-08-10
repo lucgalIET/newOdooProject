@@ -1,0 +1,35 @@
+.header{
+    width: 100%;
+    height: 130px;
+    background-color: white;
+    margin-top: 51px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    padding-top: 0.5px;
+    margin-left: 20px;
+    font-size: 15.5px;
+}
+
+.assignments{
+    color: rgb(188, 188, 188);
+}
+
+.section{
+    width: 100%;
+    /* height: 130px; */
+    background-color: white;
+    /* margin-top: 51px; */
+    border-bottom: 1px solid black;
+    display: flex;
+}
+
+.body{
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    margin-bottom: 50px;
+}

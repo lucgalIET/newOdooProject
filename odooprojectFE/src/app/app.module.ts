@@ -9,6 +9,7 @@ import { MieAttivitaComponent } from './componenti/mie-attivita/mie-attivita.com
 import { MieiProgettiComponent } from './componenti/miei-progetti/miei-progetti.component';
 import { AssignmentsComponent } from './componenti/assignments/assignments.component';
 import { AssignmentsProgettoComponent } from './componenti/assignments-progetto/assignments-progetto.component';
+import { AssignProgUserComponent } from './componenti/assign-prog-user/assign-prog-user.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AssignmentsProgettoComponent } from './componenti/assignments-progetto/
     MieAttivitaComponent,
     MieiProgettiComponent,
     AssignmentsComponent,
-    AssignmentsProgettoComponent
+    AssignmentsProgettoComponent,
+    AssignProgUserComponent
   ],
   imports: [
     BrowserModule,

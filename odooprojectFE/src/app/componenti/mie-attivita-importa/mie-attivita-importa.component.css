@@ -6,22 +6,22 @@
     border-bottom: 1px solid black;
 }
 
-.titolo{
+.title{
     padding-top: 0.5px;
     margin-left: 20px;
     font-size: 15.5px;
 }
 
-.attivita{
+.activities{
     color: #2f5b98;
 }
 
-.pulsanti{
+.buttons{
     padding-top: 15px;
     margin-left: 20px;
 }
 
-.pulsanti .btn1{
+.buttons .btn1{
     margin-right: 15px;
     background-color: #213F6A;
     color: white;
@@ -29,7 +29,7 @@
     border: solid 0.5px black;
 }
 
-.pulsanti .btn2{
+.buttons .btn2{
     background-color: white;
     height: 30px;
     border: solid 0.5px black;
@@ -43,18 +43,18 @@
     position: absolute;
 }
 
-.body .testo{
+.body .text{
     position: relative;
     margin-top: 0;
     margin-left: 585px;
     margin-top: 255px;
 }
 
-.testo h3{
+.text h3{
     width: 500px;
 }
 
-.testo p{
+.text p{
     width: 550px;
     /* margin-right: 45px; */
     /* background-color: aqua; */

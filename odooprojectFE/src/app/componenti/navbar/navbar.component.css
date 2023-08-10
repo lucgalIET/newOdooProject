@@ -1,4 +1,4 @@
-.contenitore{
+.container{
     background-color: #213F6A;
     color: white;
     position: fixed;
@@ -13,10 +13,15 @@
     /* justify-content: space-between; */
 }
 
-.contenitore .titolo{
+.container .title{
     padding-top: 17px;
     font-size: 16px;
     font-weight: 500;
+}
+
+.container .title a{
+    color: white;
+    text-decoration: none;
 }
 
 nav{
@@ -43,4 +48,3 @@ nav ul li a{
     height: 50px;
     background-color: red;
 }
-

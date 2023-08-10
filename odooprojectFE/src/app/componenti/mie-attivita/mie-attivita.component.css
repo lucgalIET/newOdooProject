@@ -8,35 +8,35 @@
     justify-content: space-between;
 }
 
-.titolo{
+.title{
     padding-top: 0.5px;
     margin-left: 20px;
     font-size: 15.5px;
 }
 
-.titolo h2{
+.title h2{
     color: rgb(188, 188, 188);
 }
 
-.pulsanti{
+.buttons{
     padding-top: 15px;
     margin-left: 20px;
 }
 
-.pulsanti .btn{
+.buttons .btn{
     background-color: white;
     height: 30px;
     border: solid 0.5px black;
     font-weight: 600;
 }
 
-.cerca input{
+.search input{
     margin-top: 24px;
     width: 800px;
     height: 18px;
 }
 
-.filtri{
+.filters{
     margin-top: 14px;
     display: flex;
     justify-content: space-between;
@@ -66,14 +66,14 @@
     display: flex;
 }
 
-.btn1 .aggiungi{
+.btn1 .add{
     width: 50px;
     height: 50px;
     background-color: rgba(0, 0, 0, 0.412);
     position: relative;
 }
 
-.btn1 .aggiungi span{
+.btn1 .add span{
     font-size: 50px;
     position: absolute;
     left: 9px;
@@ -85,7 +85,7 @@
     text-decoration: none;
 }
 
-.colonna{
+.column{
     margin-top: 13px;
     margin-left: 10px;
     color: black;
