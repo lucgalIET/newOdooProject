@@ -30,6 +30,11 @@
     font-weight: 600;
 }
 
+.buttons .btn a{
+    color: black;
+    text-decoration: none;
+}
+
 .search input{
     margin-top: 24px;
     width: 800px;
