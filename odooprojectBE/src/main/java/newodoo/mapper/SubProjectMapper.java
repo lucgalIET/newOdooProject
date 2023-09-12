@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SubProjectMapper {
-    public SubProjectEntity ToEntity(SubProjectDTO subProjectDTO){
+    public SubProjectEntity toEntity(SubProjectDTO subProjectDTO){
         SubProjectEntity subProjectEntity = new SubProjectEntity();
         subProjectEntity.setProjectName(subProjectDTO.getProjectName());
         subProjectEntity.setProjectType(subProjectDTO.getProjectType());
@@ -20,7 +20,7 @@ public class SubProjectMapper {
         subProjectEntity.setPresumedStartingMonth(subProjectDTO.getPresumedStartingMonth());
         return subProjectEntity;
     }
-    public SubProjectDTO ToDTO(SubProjectEntity subProjectEntity){
+    public SubProjectDTO toDTO(SubProjectEntity subProjectEntity){
         SubProjectDTO subProjectDTO = new SubProjectDTO();
         subProjectDTO.setProjectName(subProjectEntity.getProjectName());
         subProjectDTO.setProjectType(subProjectEntity.getProjectType());
