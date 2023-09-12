@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class ProjectMapper {
     @Autowired
-    SubProjectMapper subProjectMapper; 
+    SubProjectMapper subProjectMapper;
     public ProjectEntity toEntity(ProjectDTO projectDTO) {
         ProjectEntity projectEntity = new ProjectEntity();
         projectEntity.setId(projectDTO.getId());
@@ -58,7 +58,15 @@ public class ProjectMapper {
         projectDTO.setLinkTrello(projectEntity.getLinkTrello());
         projectDTO.setLinkGitlab(projectEntity.getLinkGitlab());
         projectDTO.setLinkLogbook(projectEntity.getLinkLogbook());
-        //MAPPARE SUBPROJECT
+
+        List<SubProjectDTO> subProjectDTOS = new ArrayList<>();
+        List<SubProjectEntity> subProjectEntities = projectEntity.getSubProjects();
+        for (SubProjectEntity sub : subProjectEntities) {
+            SubProjectDTO subProjectDTO = subProjectMapper.toDTO(sub);
+            subProjectDTOS.add(subProjectDTO);
+        }
+
+        projectDTO.setSubProjects(subProjectDTOS);
         return projectDTO;
     }
 }

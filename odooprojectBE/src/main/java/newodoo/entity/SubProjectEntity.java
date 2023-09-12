@@ -23,6 +23,7 @@ public class SubProjectEntity {
     @Column(name = "id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "country")
     private Country country;
 
