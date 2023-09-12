@@ -29,5 +29,5 @@ public class ProjectDTO {
 
     //private ProgramEntity idProgram;
 
-    private List<SubProjectEntity> subProjects;
+    private List<SubProjectDTO> subProjects;
 }

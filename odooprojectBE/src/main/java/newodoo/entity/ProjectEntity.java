@@ -67,7 +67,7 @@ public class ProjectEntity {
     private ProgramEntity idProgram;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idProject")
-    // Attributo nella classe Project che fa riferimento a program
+    // Attributo nella classe Project che fa riferimento a SUBproject
     private List<SubProjectEntity> subProjects;
 
     @Column(name = "deleted", nullable = false, columnDefinition = "bit default 0")
