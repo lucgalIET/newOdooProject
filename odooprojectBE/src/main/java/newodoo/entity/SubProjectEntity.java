@@ -3,6 +3,7 @@ package newodoo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import newodoo.Country;
 import org.hibernate.annotations.Where;
 
 import java.util.Date;
@@ -23,7 +24,7 @@ public class SubProjectEntity {
     private Long id;
 
     @Column(name = "country")
-    private String country;
+    private Country country;
 
     @Column(name = "project_type")
     private String projectType;

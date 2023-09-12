@@ -1,6 +1,7 @@
 package newodoo.dto;
 
 import lombok.*;
+import newodoo.Country;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
 @Setter
 public class SubProjectDTO {
     private Long id;
-    private String country;
+    private Country country;
     private String projectType;
     private String projectName;
     private Date presumedStartingMonth;
