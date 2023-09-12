@@ -1,5 +1,6 @@
 package newodoo.service;
 
+import newodoo.Country;
 import newodoo.dto.ProjectDTO;
 import newodoo.repository.ProjectRepository;
 import newodoo.entity.ProjectEntity;
@@ -20,7 +21,11 @@ public class ProjectService {
     private ProjectRepository projectRepository;
 
     public ProjectEntity saveProject(ProjectEntity projectEntity) {
-        return projectRepository.save(projectEntity);
+        for (Country country : Country.values()){
+            if (country == projectEntity.getCountry())
+                return projectRepository.save(projectEntity);
+        }
+        throw new NullPointerException("Country not valid");
     }
 
     public List<ProjectEntity> getAllProject() {
