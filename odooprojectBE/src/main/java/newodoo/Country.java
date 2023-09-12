@@ -1,9 +1,14 @@
 package newodoo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 public enum Country {
-    ITA("Italy"),
-    SPA("Spain"),
-    GLOBAL("Global");
+    ITA("ITA"),
+    ESP("ESP"),
+    GLOBAL("GLOBAL");
+
 
     private final String displayName;
 
@@ -14,5 +19,6 @@ public enum Country {
     public String getDisplayName() {
         return displayName;
     }
+
 }
 

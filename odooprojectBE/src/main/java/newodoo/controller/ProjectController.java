@@ -1,7 +1,9 @@
 package newodoo.controller;
 
+import jakarta.validation.constraints.Email;
 import newodoo.dto.ProjectDTO;
 import newodoo.entity.ProjectEntity;
+import newodoo.mapper.ProjectMapper;
 import newodoo.service.ProjectService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +23,9 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
     private ModelMapper modelMapper;
+
+    @Autowired
+    private ProjectMapper projectMapper;
 
     @Autowired
     public ProjectController(ModelMapper modelMapper) {
@@ -37,10 +43,16 @@ public class ProjectController {
    @GetMapping("")
     public ResponseEntity<List<ProjectDTO>>getAllProject(){
         List<ProjectEntity> projectEntities=projectService.getAllProject();
-        List<ProjectDTO> projectDTOs=projectEntities.stream()
+        List<ProjectDTO> projectDTOS= new ArrayList<>();
+        for( ProjectEntity r: projectEntities ){
+            ProjectDTO projectDTO = projectMapper.toDTO(r);
+            projectDTOS.add(projectDTO);
+        }
+        return ResponseEntity.ok(projectDTOS);
+       /* List<ProjectDTO> projectDTOs=projectEntities.stream()
                 .map(project->modelMapper.map(project, ProjectDTO.class))
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(projectDTOs);
+        return ResponseEntity.ok(projectDTOs);*/
     }
 
     @GetMapping("/{id}")
