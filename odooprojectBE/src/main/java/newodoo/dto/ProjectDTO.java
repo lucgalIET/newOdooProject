@@ -1,6 +1,7 @@
 package newodoo.dto;
 
 import lombok.*;
+import newodoo.Country;
 import newodoo.entity.ProgramEntity;
 import newodoo.entity.SubProjectEntity;
 
@@ -13,7 +14,8 @@ import java.util.List;
 @Setter
 public class ProjectDTO {
     private Long id;
-    private String country;
+    //private String country;
+    private Country country;
     private String projectType;
     private String projectName;
     private LocalDate presumedStartingMonth;
