@@ -22,7 +22,7 @@ public class ProjectService {
 
     public ProjectEntity saveProject(ProjectEntity projectEntity) {
         for (Country country : Country.values()){
-            if (country == projectEntity.getCountry())
+            if (country.equals(projectEntity.getCountry()))
                 return projectRepository.save(projectEntity);
         }
         throw new NullPointerException("Country not valid");
