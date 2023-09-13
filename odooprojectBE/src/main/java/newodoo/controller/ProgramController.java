@@ -1,5 +1,9 @@
 package newodoo.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import newodoo.dto.ProgramDTO;
 import newodoo.entity.ProgramEntity;
 import newodoo.service.ProgramService;
@@ -14,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/api/program")
+@Tag(name = "Programs Controller", description = "This controller allows create, read, update and delete operations on Programs")
 @CrossOrigin(origins = "*")
 public class ProgramController {
     @Autowired
@@ -25,7 +30,8 @@ public class ProgramController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ProgramDTO>addProgram(@RequestBody ProgramDTO programDTO){
+    @Operation(description = "Adds a new program to the repository and gives it an id")
+    public ResponseEntity<ProgramDTO>addProgram(@RequestBody @Schema(description = "The new program in a JSON format") ProgramDTO programDTO){
         ProgramEntity programEntity = modelMapper.map(programDTO, ProgramEntity.class);
         ProgramEntity programEntity1 = programService.saveProgram(programEntity);
         ProgramDTO programDTO1 = modelMapper.map(programEntity1, ProgramDTO.class);
@@ -33,6 +39,7 @@ public class ProgramController {
     }
 
     @GetMapping("")
+    @Operation(description = "Returns all the programs of the repository")
     public ResponseEntity<List<ProgramDTO>>getAllProgram(){
         List<ProgramEntity> programEntities=programService.getAllPrograms();
         List<ProgramDTO> programDTO = programEntities.stream()
@@ -42,14 +49,16 @@ public class ProgramController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProgramDTO>getProgramById(@PathVariable Long id){
+    @Operation(description = "Returns the program of the repository with the specified id")
+    public ResponseEntity<ProgramDTO>getProgramById(@Parameter(description = "The id of the program to return") @PathVariable Long id){
         ProgramEntity programEntity = programService.findById(id);
         ProgramDTO programDTO = modelMapper.map(programEntity, ProgramDTO.class);
         return ResponseEntity.ok(programDTO);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ProgramDTO>updateProgram(@PathVariable Long id, @RequestBody ProgramDTO programDTO){
+    @Operation(description = "Updates the program of the repository that has the specified id")
+    public ResponseEntity<ProgramDTO>updateProgram(@Parameter(description = "The id of the program to update") @PathVariable Long id, @RequestBody @Schema(description = "The updated program in a JSON format")  ProgramDTO programDTO){
 
         ProgramEntity programEntity=programService.updateProgram(id, programDTO);
 
@@ -59,7 +68,8 @@ public class ProgramController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String>deleteProgram(@PathVariable Long id){
+    @Operation(description = "Deletes the program of the repository with the specified id")
+    public ResponseEntity<String>deleteProgram(@Parameter(description = "The id of the program to delete") @PathVariable Long id){
         programService.deleteProgram(id);
         return ResponseEntity.ok("Program " + id + " deleted");
     }
