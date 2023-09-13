@@ -73,12 +73,15 @@
 
 .actions ul{
     display: flex;
-    margin-left: 160px;
+    margin-left: 165px;
+    margin-top: -6px;
+    margin-bottom: 18px;
 }
 
 .actions ul li{
-    margin-left: 20px;
+    margin-left: 25px;
     list-style-type: none;
+    z-index: 1;
 }
 
 .actions ul li a{
@@ -86,9 +89,10 @@
     color: #213F6A;
     font-size: 13px;
     padding-left: 12px;
+    cursor: pointer;
 }
 
-.actions .one{
+/* .actions .one{
     background-color: rgb(238, 238, 238);
     width: 130px;
     height: 40px;
@@ -117,7 +121,7 @@
 .actions .two p{
     display: inline-block;
     margin-left: 24px;
-}
+} */
 
 .segui{
     display: flex;
@@ -130,24 +134,25 @@
     font-size: 14px;
 }
 
-.box{
+/* Migrated */
+/* .box{
     margin-left: 220px;
     margin-top: -16px;
     width: 1100px;
     height: 190px;
     background-color: rgb(238, 238, 238);
-}
+} */
 
-.box textarea{
+/* .box textarea{ */
     /* margin-left: 48px; */
-    margin-left: 20px;
+    /* margin-left: 20px;
     margin-top: -5px;
     width: 960px;
     height: 90px;
     resize: none;
-}
+} */
 
-.box .a{
+/* .box .a{
     font-weight: 600;
     color: rgb(179, 179, 179);
 }
@@ -173,7 +178,7 @@
     background-color: red;
     margin-left: 20px;
     float: left;
-}
+} */
 
 .line{
     display: flex;

@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AssignmentsProgettoComponent {
 
+  activity = false;
+
+  open(){
+    if (this.activity == false) {
+      this.activity = true;
+    } else {
+      this.activity = false;
+    }
+  }
 }

@@ -1,0 +1,66 @@
+.box{
+    margin-left: 220px;
+    margin-top: -16px;
+    width: 1100px;
+    height: 200px;
+    background-color: rgb(238, 238, 238);
+    position: relative;
+}
+
+.navbox{
+    width: 120px;
+    height: 40px;
+    background-color: rgb(238, 238, 238);
+    position: absolute;
+    top: -40px;
+}
+
+.box textarea{
+    /* margin-left: 48px; */
+    margin-left: 20px;
+    margin-top: -5px;
+    width: 960px;
+    height: 90px;
+    resize: none;
+}
+
+.box .a{
+    font-weight: 600;
+    color: rgb(179, 179, 179);
+}
+
+.box .follower{
+    font-style: italic;
+    color: rgb(168, 168, 168);
+    font-weight: 300;
+}
+
+.box p{
+    font-weight: 500;
+    margin-left: 100px;
+    padding-top: 20px;
+    margin-top: 0px;
+    font-size: 14px;
+}
+
+.image{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: red;
+    margin-left: 20px;
+    float: left;
+}
+
+.btn{
+    width: 50px;
+    padding: 5px 8px;
+    /* margin-left: 100px;
+    margin-top: 5px; */
+    position: absolute;
+    left: 100px;
+    top: 155px;
+    cursor: pointer;
+    background-color: #213F6A;
+    color: white;
+}
