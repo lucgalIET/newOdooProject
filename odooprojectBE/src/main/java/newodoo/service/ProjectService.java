@@ -1,5 +1,6 @@
 package newodoo.service;
 
+import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import newodoo.Country;
 import newodoo.dto.ProjectDTO;
@@ -22,12 +23,35 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     public ProjectEntity saveProject(ProjectEntity projectEntity) {
-        for (Country country : Country.values()){
-            if (country.equals(projectEntity.getCountry()))
+        List<ProjectEntity> projectEntities = projectRepository.findAll();
+
+        //CONTROLLO PER VEDERE SE GIA ESISTE NEL DB
+        for (ProjectEntity project : projectEntities) {
+            if (projectEntity.getId() == project.getId()) {
                 return projectRepository.save(projectEntity);
+            }
         }
-        throw new IllegalArgumentException("Countr not valid");
+
+        //SE NON ESISTE CONTROLLO PRIMA LA COUNTRY CORRETTA E POI INVIO L'EMAIL DAL COO AL PM
+        for (Country country : Country.values()) {
+            if (country.equals(projectEntity.getCountry())) {
+                projectRepository.save(projectEntity);
+                try {
+                    String toPmMail = "http://localhost:8080/api/project" + projectEntity.getId();//ID DEL PROGETTO
+                    emailService.sendFromCooToPm("giuseppesorbello98.ct@gmail.com", toPmMail);
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+            } else
+                throw new IllegalArgumentException("Country not valid");
+        }
+
+
+        return projectEntity;
         //throw new NullPointerException("Country not valid");
     }
 
