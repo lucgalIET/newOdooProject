@@ -22,6 +22,7 @@ public class SubProjectController {
     @Autowired
     private SubProjectService subProjectService;
     private ModelMapper modelMapper;
+
     @Autowired
     public SubProjectController(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
@@ -31,24 +32,23 @@ public class SubProjectController {
     private SubProjectMapper subProjectMapper;
 
     @PostMapping("")
-    public ResponseEntity<SubProjectDTO>addSubProject(@RequestBody SubProjectDTO subProjectDTO){
+    public ResponseEntity<SubProjectDTO> addSubProject(@RequestBody SubProjectDTO subProjectDTO) {
         SubProjectEntity subProjectEntity = modelMapper.map(subProjectDTO, SubProjectEntity.class);
-        SubProjectEntity subProjectEntity1=subProjectService.saveSubProject(subProjectEntity);
+        SubProjectEntity subProjectEntity1 = subProjectService.saveSubProject(subProjectEntity);
         SubProjectDTO subProjectDTO1 = modelMapper.map(subProjectEntity1, SubProjectDTO.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(subProjectDTO1);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<SubProjectDTO>>getAllSubProject(){
-        List<SubProjectEntity> subProjectEntities=subProjectService.getAllSubProjects();
+    public ResponseEntity<List<SubProjectDTO>> getAllSubProject() {
+        List<SubProjectEntity> subProjectEntities = subProjectService.getAllSubProjects();
         List<SubProjectDTO> subProjectDTOS = new ArrayList<>();
         List<Long> invalid = new ArrayList<>();
-        for(SubProjectEntity s: subProjectEntities){
+        for (SubProjectEntity s : subProjectEntities) {
             try {
                 SubProjectDTO subProjectDTO = subProjectMapper.toDTO(s);
                 subProjectDTOS.add(subProjectDTO);
-            }
-            catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 invalid.add(s.getId());
             }
         }
@@ -59,16 +59,16 @@ public class SubProjectController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SubProjectDTO>getSubProjectById(@PathVariable Long id){
+    public ResponseEntity<SubProjectDTO> getSubProjectById(@PathVariable Long id) {
         SubProjectEntity subProjectEntity = subProjectService.findById(id);
         SubProjectDTO subProjectDTO = modelMapper.map(subProjectEntity, SubProjectDTO.class);
         return ResponseEntity.ok(subProjectDTO);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<SubProjectDTO>updateSubProject(@PathVariable Long id, @RequestBody SubProjectDTO subProjectDTO){
+    public ResponseEntity<SubProjectDTO> updateSubProject(@PathVariable Long id, @RequestBody SubProjectDTO subProjectDTO) {
 
-        SubProjectEntity subProjectEntity=subProjectService.updateSubProject(id, subProjectDTO);
+        SubProjectEntity subProjectEntity = subProjectService.updateSubProject(id, subProjectDTO);
 
         SubProjectDTO subProjectDTO1 = modelMapper.map(subProjectEntity, SubProjectDTO.class);
 
@@ -76,7 +76,7 @@ public class SubProjectController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String>deleteSubProject(@PathVariable Long id){
+    public ResponseEntity<String> deleteSubProject(@PathVariable Long id) {
         subProjectService.deleteSubProject(id);
         return ResponseEntity.ok("SubProject " + id + " deleted");
     }

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path="/api/project")
+@RequestMapping(path = "/api/project")
 @CrossOrigin(origins = "*")
 public class ProjectController {
 
@@ -33,24 +33,23 @@ public class ProjectController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ProjectDTO>addProject(@RequestBody ProjectDTO projectDTO){
-        ProjectEntity projectEntity=modelMapper.map(projectDTO, ProjectEntity.class);
-        ProjectEntity projectEntity1=projectService.saveProject(projectEntity);
-        ProjectDTO projectDTO1=modelMapper.map(projectEntity1, ProjectDTO.class);
+    public ResponseEntity<ProjectDTO> addProject(@RequestBody ProjectDTO projectDTO) {
+        ProjectEntity projectEntity = modelMapper.map(projectDTO, ProjectEntity.class);
+        ProjectEntity projectEntity1 = projectService.saveProject(projectEntity);
+        ProjectDTO projectDTO1 = modelMapper.map(projectEntity1, ProjectDTO.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(projectDTO1);
     }
 
-   @GetMapping("")
-    public ResponseEntity<List<ProjectDTO>>getAllProject(){
-        List<ProjectEntity> projectEntities=projectService.getAllProject();
-        List<ProjectDTO> projectDTOS= new ArrayList<>();
-        List<Long> invalid= new ArrayList<>();
-        for( ProjectEntity r: projectEntities ){
-            try{
-            ProjectDTO projectDTO = projectMapper.toDTO(r);
-            projectDTOS.add(projectDTO);
-            }
-            catch (IllegalArgumentException e){
+    @GetMapping("")
+    public ResponseEntity<List<ProjectDTO>> getAllProject() {
+        List<ProjectEntity> projectEntities = projectService.getAllProject();
+        List<ProjectDTO> projectDTOS = new ArrayList<>();
+        List<Long> invalid = new ArrayList<>();
+        for (ProjectEntity r : projectEntities) {
+            try {
+                ProjectDTO projectDTO = projectMapper.toDTO(r);
+                projectDTOS.add(projectDTO);
+            } catch (IllegalArgumentException e) {
                 invalid.add(r.getId());
             }
         }
@@ -62,9 +61,9 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProjectDTO>getProjectById(@PathVariable Long id){
-        ProjectEntity projectEntity=projectService.findById(id);
-        ProjectDTO projectDTO=modelMapper.map(projectEntity, ProjectDTO.class);
+    public ResponseEntity<ProjectDTO> getProjectById(@PathVariable Long id) {
+        ProjectEntity projectEntity = projectService.findById(id);
+        ProjectDTO projectDTO = modelMapper.map(projectEntity, ProjectDTO.class);
         return ResponseEntity.ok(projectDTO);
     }
 
@@ -79,7 +78,7 @@ public class ProjectController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String>deleteProject(@PathVariable Long id){
+    public ResponseEntity<String> deleteProject(@PathVariable Long id) {
         projectService.deleteProject(id);
         return ResponseEntity.ok("Project " + id + " deleted");
     }
