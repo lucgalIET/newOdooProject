@@ -15,7 +15,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendFromCooToPm(String toEmail, String verificationLink) throws MessagingException {
+    public void sendFromCooToPm(String toEmail, String verificationLink, String subject) throws MessagingException {
        /* MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
@@ -30,8 +30,10 @@ public class EmailService {
         SimpleMailMessage message=new SimpleMailMessage();
         message.setFrom("giuseppesorbello98.ct@gmail.com");
         message.setTo(toEmail);//DA PERSONALIZZARE
+        message.setSubject(subject);
+        message.setText("SEI IL PM DESIGNATO " + verificationLink);
 
-        message.setText(verificationLink);
+        //message.setText(verificationLink);
         System.out.println(message);
         javaMailSender.send(message);
     }

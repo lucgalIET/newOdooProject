@@ -40,17 +40,17 @@ public class ProjectService {
         for (Country country : Country.values()) {
             if (country.equals(projectEntity.getCountry())) {
                 projectRepository.save(projectEntity);
-                try {
-                    String toPmMail = "http://localhost:8080/api/project" + projectEntity.getId();//ID DEL PROGETTO
-                    emailService.sendFromCooToPm("giuseppesorbello98.ct@gmail.com", toPmMail);
+                try {//IMPOSTARE EMAIL PM, ACCESSO ANAGRAFICA E IL TEMPLATE DEL LOGBOOK
+                    String toPmMail = "http://localhost:8080/api/project/" + projectEntity.getId();//ID DEL PROGETTO
+                    String subject = "Oggetto";
+                    emailService.sendFromCooToPm("giuseppesorbello98.ct@gmail.com", toPmMail, subject);
                 } catch (MessagingException e) {
                     e.printStackTrace();
+                }catch (IllegalArgumentException a){
+                    a.printStackTrace();
                 }
-            } else
-                throw new IllegalArgumentException("Country not valid");
+            }
         }
-
-
         return projectEntity;
         //throw new NullPointerException("Country not valid");
     }
