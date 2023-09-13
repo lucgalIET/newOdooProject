@@ -1,16 +1,21 @@
 package newodoo.controller;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.Email;
 import newodoo.dto.ProjectDTO;
 import newodoo.entity.ProjectEntity;
+import newodoo.entity.SubProjectEntity;
+import newodoo.exceptions.ProjectNotFoundException;
 import newodoo.mapper.ProjectMapper;
 import newodoo.service.ProjectService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +36,8 @@ public class ProjectController {
     public ProjectController(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
+
+    private ProjectNotFoundException projectNotFoundException;
 
     @PostMapping("")
     public ResponseEntity<ProjectDTO> addProject(@RequestBody ProjectDTO projectDTO) {
@@ -62,9 +69,17 @@ public class ProjectController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProjectDTO> getProjectById(@PathVariable Long id) {
-        ProjectEntity projectEntity = projectService.findById(id);
-        ProjectDTO projectDTO = modelMapper.map(projectEntity, ProjectDTO.class);
-        return ResponseEntity.ok(projectDTO);
+            ProjectEntity projectEntity = projectService.findById(id);
+            /*if(projectEntity==null){
+                System.out.println("err");
+
+                throw new ProjectNotFoundException("Project " + id + "NOT FOUND");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(projectNotFoundException.getMessage())
+            }*/
+
+            ProjectDTO projectDTO = modelMapper.map(projectEntity, ProjectDTO.class);
+            return ResponseEntity.ok(projectDTO);
+
     }
 
     @PatchMapping("/{id}")

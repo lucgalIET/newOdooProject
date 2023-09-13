@@ -61,6 +61,10 @@ public class SubProjectController {
     @GetMapping("/{id}")
     public ResponseEntity<SubProjectDTO> getSubProjectById(@PathVariable Long id) {
         SubProjectEntity subProjectEntity = subProjectService.findById(id);
+       /* if (subProjectEntity == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }*/
+
         SubProjectDTO subProjectDTO = modelMapper.map(subProjectEntity, SubProjectDTO.class);
         return ResponseEntity.ok(subProjectDTO);
     }
