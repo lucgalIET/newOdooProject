@@ -4,6 +4,7 @@ import newodoo.Country;
 import newodoo.dto.ProjectDTO;
 import newodoo.dto.SubProjectDTO;
 import newodoo.entity.ProjectEntity;
+import newodoo.exceptions.SubProjectNotFoundException;
 import newodoo.repository.SubProjectRepository;
 import newodoo.entity.SubProjectEntity;
 import org.springframework.beans.BeanUtils;
@@ -34,7 +35,7 @@ public class SubProjectService {
     }
 
     public SubProjectEntity findById(Long id) {
-        return subProjectRepository.findById(id).orElseThrow();
+        return subProjectRepository.findById(id).orElseThrow(SubProjectNotFoundException::new);
     }
 
     public SubProjectEntity updateSubProject(Long id, SubProjectDTO subProjectDTO) {

@@ -1,7 +1,9 @@
 package newodoo.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import newodoo.Country;
 import newodoo.dto.ProjectDTO;
+import newodoo.exceptions.ProjectNotFoundException;
 import newodoo.repository.ProjectRepository;
 import newodoo.entity.ProjectEntity;
 import org.springframework.beans.BeanUtils;
@@ -25,16 +27,16 @@ public class ProjectService {
             if (country.equals(projectEntity.getCountry()))
                 return projectRepository.save(projectEntity);
         }
-        throw new NullPointerException("Country not valid");
+        throw new IllegalArgumentException("Countr not valid");
+        //throw new NullPointerException("Country not valid");
     }
 
     public List<ProjectEntity> getAllProject() {
-        System.out.println("ENTRO");
         return projectRepository.findAll();
     }
 
     public ProjectEntity findById(Long id) {
-        return projectRepository.findById(id).orElseThrow();
+        return projectRepository.findById(id).orElseThrow(ProjectNotFoundException::new);
     }
 
     public ProjectEntity updateProject(Long id, ProjectDTO projectDTO) {
