@@ -57,8 +57,18 @@ public class ProgramController {
     }
 
     @PatchMapping("/{id}")
-    @Operation(description = "Updates the program of the repository that has the specified id")
-    public ResponseEntity<ProgramDTO>updateProgram(@Parameter(description = "The id of the program to update") @PathVariable Long id, @RequestBody @Schema(description = "The updated program in a JSON format")  ProgramDTO programDTO){
+    @Operation(description = "Updates some information on the program of the repository that has the specified id")
+    public ResponseEntity<ProgramDTO> updatePatchProgram(@Parameter(description = "The id of the program to update") @PathVariable Long id, @RequestBody @Schema(description = "The updated program in a JSON format")  ProgramDTO programDTO){
+
+        ProgramEntity programEntity=programService.updateProgram(id, programDTO);
+
+        ProgramDTO programDTO1 = modelMapper.map(programEntity, ProgramDTO.class);
+
+        return ResponseEntity.ok(programDTO1);
+    }
+    @PutMapping("/{id}")
+    @Operation(description = "Updates all information on the program of the repository that has the specified id")
+    public ResponseEntity<ProgramDTO> updatePutProgram(@Parameter(description = "The id of the program to update") @PathVariable Long id, @RequestBody @Schema(description = "The updated program in a JSON format")  ProgramDTO programDTO){
 
         ProgramEntity programEntity=programService.updateProgram(id, programDTO);
 

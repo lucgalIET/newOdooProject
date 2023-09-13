@@ -57,8 +57,18 @@ public class SubProjectController {
     }
 
     @PatchMapping("/{id}")
-    @Operation(description = "Updates the subproject of the repository that has the specified id")
-    public ResponseEntity<SubProjectDTO>updateSubProject(@Parameter(description = "The id of the subproject to update")  @PathVariable Long id, @RequestBody @Schema(description = "The updated subproject in a JSON format") SubProjectDTO subProjectDTO){
+    @Operation(description = "Updates some information on the subproject of the repository that has the specified id")
+    public ResponseEntity<SubProjectDTO>updatePatchSubProject(@Parameter(description = "The id of the subproject to update")  @PathVariable Long id, @RequestBody @Schema(description = "The updated subproject in a JSON format") SubProjectDTO subProjectDTO){
+
+        SubProjectEntity subProjectEntity=subProjectService.updateSubProject(id, subProjectDTO);
+
+        SubProjectDTO subProjectDTO1 = modelMapper.map(subProjectEntity, SubProjectDTO.class);
+
+        return ResponseEntity.ok(subProjectDTO1);
+    }
+    @PutMapping("/{id}")
+    @Operation(description = "Updates all information on the subproject of the repository that has the specified id")
+    public ResponseEntity<SubProjectDTO>updatePutSubProject(@Parameter(description = "The id of the subproject to update")  @PathVariable Long id, @RequestBody @Schema(description = "The updated subproject in a JSON format") SubProjectDTO subProjectDTO){
 
         SubProjectEntity subProjectEntity=subProjectService.updateSubProject(id, subProjectDTO);
 
