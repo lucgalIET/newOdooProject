@@ -36,24 +36,18 @@
         <div class="actions">
             <ul>
                 <li>
-                    <a href="">
-                        <div class="one">
-                            <p>Invia messaggio</p>
-                        </div>
+                    <a routerLink="message">
+                        <p>Invia messaggio</p>
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                        <div class="two">
-                            <p>Inserisci nota</p>
-                        </div>
+                    <a routerLink="note">
+                        <p>Inserisci nota</p>
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                        <div class="three">
-                            <p>Pianifica attività</p>
-                        </div>
+                    <a routerLink="activity">
+                        <p>Pianifica attività</p>
                     </a>
                 </li>
             </ul>
@@ -64,14 +58,8 @@
             <p>2</p>
         </div>
     </div>
-    <div class="box">
-        <p>
-            <span class="a">A: </span> 
-            <span class="follower">Follower di: </span>
-            <span>"Pinco Pallino as Analista on Enel"</span>
-        </p>
-        <div class="image"></div>
-        <textarea name="" id="" cols="30" rows="10" placeholder="Scrivere qualcosa..."></textarea>
+    <div>
+        <router-outlet></router-outlet>
     </div>
     <div class="line">
         <span class="text">1 Agosto 2023</span>
