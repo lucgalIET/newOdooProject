@@ -57,7 +57,7 @@ public class ProjectService {
     }
 
     public void deleteProject(Long id) {
-        ProjectEntity projectEntity = projectRepository.findById(id).orElseThrow();
+        ProjectEntity projectEntity = projectRepository.findById(id).orElseThrow(ProjectNotFoundException::new);
         projectEntity.setDeleted(true);
         projectRepository.save(projectEntity);
     }

@@ -1,5 +1,6 @@
 package newodoo.controller;
 
+<<<<<<< Updated upstream
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -7,6 +8,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Email;
 import newodoo.dto.ProjectDTO;
 import newodoo.entity.ProjectEntity;
+=======
+import newodoo.dto.ProjectDTO;
+import newodoo.entity.ProjectEntity;
+import newodoo.exceptions.ProjectNotFoundException;
+>>>>>>> Stashed changes
 import newodoo.mapper.ProjectMapper;
 import newodoo.service.ProjectService;
 import org.modelmapper.ModelMapper;
@@ -17,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path="/api/project")
@@ -63,11 +68,26 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
+<<<<<<< Updated upstream
     @Operation(description = "Returns the project of the repository with the specified id")
     public ResponseEntity<ProjectDTO>getProjectById(@Parameter(description = "The id of the project to return") @PathVariable Long id){
         ProjectEntity projectEntity=projectService.findById(id);
         ProjectDTO projectDTO=modelMapper.map(projectEntity, ProjectDTO.class);
         return ResponseEntity.ok(projectDTO);
+=======
+    public ResponseEntity<ProjectDTO> getProjectById(@PathVariable Long id) {
+        ProjectEntity projectEntity = projectService.findById(id);
+            /*if(projectEntity==null){
+                System.out.println("err");
+
+                throw new ProjectNotFoundException("Project " + id + "NOT FOUND");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(projectNotFoundException.getMessage())
+            }*/
+
+        ProjectDTO projectDTO = modelMapper.map(projectEntity, ProjectDTO.class);
+        return ResponseEntity.ok(projectDTO);
+
+>>>>>>> Stashed changes
     }
 
     @PatchMapping("/{id}")

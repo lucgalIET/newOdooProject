@@ -1,12 +1,10 @@
 package newodoo.service;
 
 import newodoo.Country;
-import newodoo.dto.ProjectDTO;
 import newodoo.dto.SubProjectDTO;
-import newodoo.entity.ProjectEntity;
+import newodoo.entity.SubProjectEntity;
 import newodoo.exceptions.SubProjectNotFoundException;
 import newodoo.repository.SubProjectRepository;
-import newodoo.entity.SubProjectEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -56,7 +54,7 @@ public class SubProjectService {
     }
 
     public void deleteSubProject(Long id) {
-        SubProjectEntity subProjectEntity = subProjectRepository.findById(id).orElseThrow();
+        SubProjectEntity subProjectEntity = subProjectRepository.findById(id).orElseThrow(SubProjectNotFoundException::new);
         subProjectEntity.setDeleted(true);
         subProjectRepository.save(subProjectEntity);
     }
