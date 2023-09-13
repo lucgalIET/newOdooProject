@@ -1,11 +1,9 @@
 .header{
     width: 100%;
-    height: 130px;
+    height: 110px;
     background-color: white;
     margin-top: 51px;
     border-bottom: 1px solid black;
-    display: flex;
-    justify-content: space-between;
 }
 
 .title{
@@ -16,6 +14,18 @@
 
 .assignments{
     color: rgb(188, 188, 188);
+}
+
+.buttons{
+    text-align: center;
+}
+
+.buttons .btn{
+    background-color: white;
+    height: 24px;
+    border: solid 0.8px rgba(101, 101, 101, 0.384);
+    border-radius: 2px;
+    font-weight: 500;
 }
 
 .section{
@@ -30,6 +40,61 @@
 .body{
     width: 100%;
     height: 100%;
+    min-height: 550px;
     background-color: #ffffff;
-    margin-bottom: 50px;
+    /* background-color: red; */
+    /* margin-bottom: 50px; */
+    z-index: -1;
+}
+
+.body section{
+    width: 100%;
+    min-height: 350px;
+    border-bottom: 1px solid black;
+    background-color: #d3d3d3a9;
+    position: relative;
+}
+
+.body .card{
+    width: 1000px;
+    height: 320px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -160px 0 0 -500px;
+    border: 1px solid black;
+}
+
+.card .flex{
+    display: flex;
+}
+
+.list1{
+    margin-bottom: 17px;
+    font-weight: 600;
+    margin-left: -22px;
+    cursor: default;
+}
+
+.list1 ul li{
+    list-style-type: none;
+    padding-top: 12px;
+    margin-bottom: -4px;
+    font-size: 13px;
+}
+
+.hr{
+    margin-left: 196px;
+    margin-top: -58px;
+    border-left: solid 1px rgb(188, 188, 188);
+    width: 1px;
+    height: 45px;
+}
+
+.img img{
+    width: 140px;
+    margin-top: 15px;
+    margin-left: 15px;
+    border: 1px solid black;
 }
