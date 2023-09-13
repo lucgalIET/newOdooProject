@@ -29,6 +29,7 @@ public class ProjectService {
     }
 
     public List<ProjectEntity> getAllProject() {
+        System.out.println("ENTRO");
         return projectRepository.findAll();
     }
 

@@ -44,9 +44,15 @@ public class ProjectController {
     public ResponseEntity<List<ProjectDTO>>getAllProject(){
         List<ProjectEntity> projectEntities=projectService.getAllProject();
         List<ProjectDTO> projectDTOS= new ArrayList<>();
+        List<Long> invalid= new ArrayList<>();
         for( ProjectEntity r: projectEntities ){
+            try{
             ProjectDTO projectDTO = projectMapper.toDTO(r);
             projectDTOS.add(projectDTO);
+            }
+            catch (IllegalArgumentException e){
+                invalid.add(r.getId());
+            }
         }
         return ResponseEntity.ok(projectDTOS);
        /* List<ProjectDTO> projectDTOs=projectEntities.stream()
