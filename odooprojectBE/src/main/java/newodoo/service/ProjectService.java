@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.beans.FeatureDescriptor;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -46,7 +47,7 @@ public class ProjectService {
                     emailService.sendFromCooToPm("giuseppesorbello98.ct@gmail.com", toPmMail, subject);
                 } catch (MessagingException e) {
                     e.printStackTrace();
-                }catch (IllegalArgumentException a){
+                } catch (IllegalArgumentException a) {
                     a.printStackTrace();
                 }
             }
@@ -56,7 +57,26 @@ public class ProjectService {
     }
 
     public List<ProjectEntity> getAllProject() {
-        return projectRepository.findAll();
+        List<ProjectEntity> projectEntities = projectRepository.findAll();
+        List<ProjectEntity> validProject = new ArrayList<>();
+        for (ProjectEntity project : projectEntities) {
+            try {
+                if (isValid(project)) {
+                    validProject.add(project);
+                }
+            } catch (IllegalArgumentException e) { //aggiungere varie exception
+                e.getMessage();
+            }
+        }
+        return validProject;
+    }
+
+    private boolean isValid(ProjectEntity project) { //controlli per la validità del progetto
+        for (Country country : Country.values()) {
+            if (country.equals(project.getCountry()))
+                return true;
+        }
+        return false;
     }
 
     public ProjectEntity findById(Long id) {
