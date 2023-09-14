@@ -1,30 +1,36 @@
 <div class="header">
-    <div>
-        <div class="title">
-            <h2>Le mie attività</h2>
-        </div>
-        <div class="buttons">
-            <button class="btn">
-                <a routerLink="/importa">Importa</a>
-            </button>
-            <!-- <button>
-                <img src="" alt="">
-            </button> -->
-        </div>
-    </div>
-    <div class="search">
-        <input type="text" placeholder="Ricerca..."><br>
-        <div class="filters">
-            <div>
-                <button class="btn2">Filtri</button>
-                <button class="btn2">Raggruppa per</button>
-                <button class="btn2">Preferiti</button> 
+
+        <div class="col-1">
+            <div class="title">
+                <h2>Le mie attività</h2>
             </div>
-            <!-- <button>
-                <img src="" alt="">
-            </button> -->
+            <div class="import">
+                <button class="btn" routerLink="/importa">Importa</button>
+            </div>
         </div>
-    </div>
+
+        <div class="col-2">
+            <div class="search">
+                <input type="text" placeholder="Ricerca..."><br>
+            </div>
+            <div class="buttons">
+                <div class="filters">
+                    <div>
+                        <button class="btn2">Filtri</button>
+                        <button class="btn2">Raggruppa per</button>
+                        <button class="btn2">Preferiti</button> 
+                    </div>
+                </div>
+                <div class="filters">
+                    <button routerLink="/mieattivita">Uno
+                        <!-- <img src="" alt=""> -->
+                    </button>
+                    <button>Due
+                        <!-- <img src="" alt=""> -->
+                    </button>
+                </div>
+            </div>
+        </div>
 </div>
 <div class="body">
     <div class="btn1">

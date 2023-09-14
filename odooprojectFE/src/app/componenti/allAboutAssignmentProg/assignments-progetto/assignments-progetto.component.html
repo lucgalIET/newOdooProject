@@ -33,33 +33,20 @@
 </div>
 <div class="body">
     <div class="flexbox">
-        <div class="actions">
-            <ul>
-                <li>
-                    <a routerLink="message">
-                        <p>Invia messaggio</p>
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="note">
-                        <p>Inserisci nota</p>
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="activity">
-                        <p>Pianifica attività</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <mat-tab-group animationDuration="0ms" class="tab">
+            <mat-tab label="Invia messaggio">
+                <!-- <app-assign-prog-message></app-assign-prog-message> -->
+            </mat-tab>
+            <mat-tab label="Nota">
+                <!-- <app-assign-prog-note></app-assign-prog-note> -->
+            </mat-tab>
+            <mat-tab label="Pianifica attività">Content 3</mat-tab>
+        </mat-tab-group>
         <div class="segui">
             <p>0</p>
             <p>Segui</p>
             <p>2</p>
         </div>
-    </div>
-    <div>
-        <router-outlet></router-outlet>
     </div>
     <div class="line">
         <span class="text">1 Agosto 2023</span>

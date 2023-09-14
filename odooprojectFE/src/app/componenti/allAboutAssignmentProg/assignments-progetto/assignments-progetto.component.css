@@ -78,50 +78,13 @@
     margin-bottom: 18px;
 }
 
-.actions ul li{
-    margin-left: 25px;
-    list-style-type: none;
-    z-index: 1;
-}
-
-.actions ul li a{
-    text-decoration: none;
+.tab{
+    margin-left: 185px;
     color: #213F6A;
     font-size: 13px;
     padding-left: 12px;
     cursor: pointer;
 }
-
-/* .actions .one{
-    background-color: rgb(238, 238, 238);
-    width: 130px;
-    height: 40px;
-    margin-top: -25px;
-}
-
-.actions .two{
-    background-color: transparent;
-    width: 130px;
-    height: 40px;
-    margin-top: -25px;
-}
-
-.actions .three{
-    background-color: transparent;
-    width: 130px;
-    height: 40px;
-    margin-top: -25px;
-}
-
-.actions .one p, .actions .three p{
-    display: inline-block;
-    margin-left: 16px;
-}
-
-.actions .two p{
-    display: inline-block;
-    margin-left: 24px;
-} */
 
 .segui{
     display: flex;
@@ -133,52 +96,6 @@
     margin-right: 10px;
     font-size: 14px;
 }
-
-/* Migrated */
-/* .box{
-    margin-left: 220px;
-    margin-top: -16px;
-    width: 1100px;
-    height: 190px;
-    background-color: rgb(238, 238, 238);
-} */
-
-/* .box textarea{ */
-    /* margin-left: 48px; */
-    /* margin-left: 20px;
-    margin-top: -5px;
-    width: 960px;
-    height: 90px;
-    resize: none;
-} */
-
-/* .box .a{
-    font-weight: 600;
-    color: rgb(179, 179, 179);
-}
-
-.box .follower{
-    font-style: italic;
-    color: rgb(168, 168, 168);
-    font-weight: 300;
-}
-
-.box p{
-    font-weight: 500;
-    margin-left: 100px;
-    padding-top: 20px;
-    margin-top: 0px;
-    font-size: 14px;
-}
-
-.image{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: red;
-    margin-left: 20px;
-    float: left;
-} */
 
 .line{
     display: flex;
