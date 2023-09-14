@@ -48,12 +48,12 @@ public class ProjectController {
    @Operation(description = "Returns all the projects of the repository")
     public ResponseEntity<List<ProjectDTO>>getAllProject(){
         List<ProjectEntity> projectEntities=projectService.getAllProject();
-        List<ProjectDTO> projectDTOSS= new ArrayList<>();
+        List<ProjectDTO> projectDTOS= new ArrayList<>();
         for( ProjectEntity r: projectEntities ){
             ProjectDTO projectDTO = projectMapper.toDTO(r);
-            projectDTOSS.add(projectDTO);
+            projectDTOS.add(projectDTO);
         }
-        return ResponseEntity.ok(projectDTOSS);
+        return ResponseEntity.ok(projectDTOS);
        /* List<ProjectDTO> projectDTOs=projectEntities.stream()
                 .map(project->modelMapper.map(project, ProjectDTO.class))
                 .collect(Collectors.toList());
