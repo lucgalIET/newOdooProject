@@ -31,7 +31,7 @@ public class EmailService {
         message.setFrom("giuseppesorbello98.ct@gmail.com");
         message.setTo(toEmail);//DA PERSONALIZZARE
         message.setSubject(subject);
-        message.setText("SEI IL PM DESIGNATO " + verificationLink);
+        message.setText("SEI IL PM DESIGNATO \n" + verificationLink);
 
         //message.setText(verificationLink);
         System.out.println(message);

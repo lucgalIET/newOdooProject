@@ -42,7 +42,7 @@ public class ProjectService {
             if (country.equals(projectEntity.getCountry())) {
                 projectRepository.save(projectEntity);
                 try {//IMPOSTARE EMAIL PM, ACCESSO ANAGRAFICA E IL TEMPLATE DEL LOGBOOK
-                    String toPmMail = "http://localhost:8080/api/project/" + projectEntity.getId();//ID DEL PROGETTO
+                    String toPmMail = "http://localhost:8080/api/project/pm/" + projectEntity.getId();//ID DEL PROGETTO
                     String subject = "Oggetto";
                     emailService.sendFromCooToPm("giuseppesorbello98.ct@gmail.com", toPmMail, subject);
                 } catch (MessagingException e) {
