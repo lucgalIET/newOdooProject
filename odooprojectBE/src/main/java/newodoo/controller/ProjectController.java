@@ -78,19 +78,20 @@ public class ProjectController {
     @PatchMapping("/{id}")
     @Operation(description = "Updates some information of the project of the repository that has the specified id")
     public ResponseEntity<ProjectDTO> updatePatchProject(@Parameter(description = "The id of the project to update")  @PathVariable Long id, @RequestBody @Schema(description = "The updated project in a JSON format") ProjectDTO projectDTO) {
-
-        ProjectEntity projectEntity = projectService.updateProject(id, projectDTO);
+        boolean isFirst=false;
+        ProjectEntity projectEntity = projectService.updateProject(id, projectDTO, isFirst);
 
         ProjectDTO projectDTO1 = modelMapper.map(projectEntity, ProjectDTO.class);
 
         return ResponseEntity.ok(projectDTO1);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("firstmodified/{id}")
     @Operation(description = "Updates some information of the project of the repository that has the specified id")
     public ResponseEntity<ProjectDTO> updatePatchProjectFromPmToTl(@Parameter(description = "The id of the project to update")  @PathVariable Long id, @RequestBody @Schema(description = "The updated project in a JSON format") ProjectDTO projectDTO) {
+        boolean isFirst=true;
 
-        ProjectEntity projectEntity = projectService.updateProject(id, projectDTO);
+        ProjectEntity projectEntity = projectService.updateProject(id, projectDTO, isFirst);
 
         ProjectDTO projectDTO1 = modelMapper.map(projectEntity, ProjectDTO.class);
 
@@ -99,8 +100,9 @@ public class ProjectController {
     @PutMapping("/{id}")
     @Operation(description = "Updates all information of the project of the repository that has the specified id")
     public ResponseEntity<ProjectDTO> updatePutProject(@Parameter(description = "The id of the project to update")  @PathVariable Long id, @RequestBody @Schema(description = "The updated project in a JSON format") ProjectDTO projectDTO) {
+        boolean isFirst=false;
 
-        ProjectEntity projectEntity = projectService.updateProject(id, projectDTO);
+        ProjectEntity projectEntity = projectService.updateProject(id, projectDTO, isFirst);
 
         ProjectDTO projectDTO1 = modelMapper.map(projectEntity, ProjectDTO.class);
 

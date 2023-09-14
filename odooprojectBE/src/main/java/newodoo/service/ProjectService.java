@@ -42,7 +42,7 @@ public class ProjectService {
             if (country.equals(projectEntity.getCountry())) {
                 projectRepository.save(projectEntity);
                 try {//IMPOSTARE EMAIL PM, ACCESSO ANAGRAFICA E IL TEMPLATE DEL LOGBOOK
-                    String toPmMail = "http://localhost:8080/api/project/pm/" + projectEntity.getId();//ID DEL PROGETTO
+                    String toPmMail = "http://localhost:8080/api/project/" + projectEntity.getId();//ID DEL PROGETTO
                     String subject = "Oggetto";
                     emailService.sendFromCooToPm("giuseppesorbello98.ct@gmail.com", toPmMail, subject);
                 } catch (MessagingException e) {
@@ -83,11 +83,19 @@ public class ProjectService {
         return projectRepository.findById(id).orElseThrow(ProjectNotFoundException::new);
     }
 
-    public ProjectEntity updateProject(Long id, ProjectDTO projectDTO) {
+    public ProjectEntity updateProject(Long id, ProjectDTO projectDTO, boolean isFirst) {
+
         ProjectEntity projectEntity = findById(id);
         projectDTO.setId(projectEntity.getId());
-
         BeanUtils.copyProperties(projectDTO, projectEntity, getNullPropertyNames(projectDTO));
+        if(isFirst){
+            try{//IMPOSTARE EMAIL PM, ACCESSO ANAGRAFICA E IL TEMPLATE DEL LOGBOOK
+                String toPmMail = "http://localhost:8080/api/project/" + projectEntity.getId();//INVIO DEL TEMPLATE CAPIRE COME
+                String subject = "Oggetto PM to TL";
+                emailService.sendFromPmToTl("giuseppesorbello98.ct@gmail.com", toPmMail, subject);
+            }catch (Exception e){e.printStackTrace();}
+        }
+
         return projectRepository.save(projectEntity);
 
     }
