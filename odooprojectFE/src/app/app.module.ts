@@ -1,8 +1,11 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import {MatTabsModule} from '@angular/material/tabs';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +19,24 @@ import { AssignProgUserComponent } from './componenti/assign-prog-user/assign-pr
 import { AssignProgMessageComponent } from './componenti/allAboutAssignmentProg/assign-prog-message/assign-prog-message.component';
 import { AssignProgNoteComponent } from './componenti/allAboutAssignmentProg/assign-prog-note/assign-prog-note.component';
 import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg/assign-prog-activity/assign-prog-activity.component';
+
+
+// function initializeKeycloak(keycloak: KeycloakService) {
+//   return () =>
+//     keycloak.init({
+//       config: {
+//         url: 'http://docker.iet.it:8585',
+//         realm: 'iet-sso',
+//         clientId: 'dudu-app'
+//       },
+//       initOptions: {
+//         onLoad: 'check-sso',
+//         silentCheckSsoRedirectUri:
+//           window.location.origin + '/assets/silent-check-sso.html'
+//       }
+//     });
+// }
+
 
 @NgModule({
   declarations: [
@@ -35,9 +56,18 @@ import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    KeycloakAngularModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeKeycloak,
+    //   multi: true,
+    //   deps: [KeycloakService]
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
