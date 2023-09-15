@@ -8,8 +8,24 @@
         <input type="text" placeholder="Ricerca..."><br>
         <div class="filters">
             <div>
-                <button class="btn2">Filtri</button>
-                <button class="btn2">Raggruppa per</button>
+                <button class="btn2" [matMenuTriggerFor]="menu">Filtri</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>I miei preferiti</button>
+                    <button mat-menu-item>In cui sono follower</button>
+                    <button mat-menu-item>Templates</button>
+                    <button mat-menu-item>Non-templates</button>
+                    <button mat-menu-item>Milestone Projects</button>
+                    <button mat-menu-item>Archiviata</button>
+                    <button mat-menu-item>Not Closed</button>
+                    <button mat-menu-item>Closed</button>
+                  </mat-menu>
+                <button class="btn2" [matMenuTriggerFor]="menuTwo">Raggruppa per</button>
+                <mat-menu #menuTwo="matMenu">
+                    <button mat-menu-item>Supervisore progetto</button>
+                    <button mat-menu-item>Client</button>
+                    <button mat-menu-item>Status</button>
+                    <button mat-menu-item>Type</button>
+                  </mat-menu>
                 <button class="btn2">Preferiti</button> 
             </div>
             <!-- <button>

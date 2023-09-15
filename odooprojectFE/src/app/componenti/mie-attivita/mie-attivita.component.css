@@ -23,6 +23,7 @@
 .import{
     /* padding-top: 15px; */
     margin-left: 20px;
+    margin-top: -3px;
 }
 
 .import .btn{
@@ -56,10 +57,11 @@
 
 .btn2{
     background-color: white;
-    height: 24px;
+    height: 28px;
     border: solid 0.8px rgba(101, 101, 101, 0.384);
     border-radius: 2px;
     font-weight: 500;
+    font-size: 14px;
 }
 
 .body{
