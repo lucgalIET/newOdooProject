@@ -1,3 +1,15 @@
+.darkpage{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
 .header{
     width: 100%;
     height: 100px;
@@ -78,8 +90,14 @@
     margin-bottom: 18px;
 }
 
-.tab{
-    margin-left: 185px;
+.actions ul li{
+    margin-left: 25px;
+    list-style-type: none;
+    z-index: 1;
+}
+
+.actions ul li a{
+    text-decoration: none;
     color: #213F6A;
     font-size: 13px;
     padding-left: 12px;
@@ -88,7 +106,7 @@
 
 .segui{
     display: flex;
-    margin-top: 8px;
+    margin-top: 11px;
 }
 
 .segui p{

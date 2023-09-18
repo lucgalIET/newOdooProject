@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="header">
     <div>
         <div class="title">
@@ -18,15 +19,19 @@
                     <button mat-menu-item>Archiviata</button>
                     <button mat-menu-item>Not Closed</button>
                     <button mat-menu-item>Closed</button>
-                  </mat-menu>
+                </mat-menu>
                 <button class="btn2" [matMenuTriggerFor]="menuTwo">Raggruppa per</button>
                 <mat-menu #menuTwo="matMenu">
                     <button mat-menu-item>Supervisore progetto</button>
                     <button mat-menu-item>Client</button>
                     <button mat-menu-item>Status</button>
                     <button mat-menu-item>Type</button>
-                  </mat-menu>
-                <button class="btn2">Preferiti</button> 
+                </mat-menu>
+                <button class="btn2" [matMenuTriggerFor]="menuThree">Preferiti</button>
+                <mat-menu #menuThree="matMenu">
+                    <button mat-menu-item>Salva la ricerca corrente</button>
+                    <button mat-menu-item>Aggiungi alla mia bacheca</button>
+                </mat-menu>
             </div>
             <!-- <button>
                 <img src="" alt="">
