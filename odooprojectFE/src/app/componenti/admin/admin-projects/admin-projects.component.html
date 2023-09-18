@@ -1,0 +1,56 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="header">
+    <div class="col-1">
+        <div class="title">
+            <h2>Progetti</h2>
+        </div>
+        <div class="btns">
+            <button class="btn">Crea</button>
+            <button class="import" routerLink="/importa">Importa</button>
+        </div>
+    </div>
+
+    <div class="col-2">
+        <div class="search">
+            <input type="text" placeholder="Ricerca..."><br>
+        </div>
+        <div class="buttons">
+            <div class="filters">
+                <div>
+                    <button class="btn2" [matMenuTriggerFor]="menu">Filtri</button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Le mie attività progetto</button>
+                        <button mat-menu-item>Attività seguite</button>
+                        <button mat-menu-item>Non assegnata</button>
+                        <button mat-menu-item>Preferiti</button>
+                        <button mat-menu-item>Messaggi non letti</button>
+                        <button mat-menu-item>Archiviata</button>
+                        <button mat-menu-item>Le mie attività</button>
+                        <button mat-menu-item>Attività in ritardo</button>
+                        <button mat-menu-item>Attività di oggi</button>
+                        <button mat-menu-item>Attività future</button>
+                        <button mat-menu-item>Parent tasks</button>
+                        <!-- <button mat-menu-item>Aggiungi filtro personalizzato</button> -->
+                    </mat-menu>
+                    <button class="btn2" [matMenuTriggerFor]="menuTwo">Raggruppa per</button>
+                    <mat-menu #menuTwo="matMenu">
+                        <button mat-menu-item>Progetto</button>
+                        <button mat-menu-item>Attività</button>
+                        <button mat-menu-item>Assegnata a</button>
+                        <button mat-menu-item>Fase</button>
+                        <button mat-menu-item>Milestones</button>
+                        <button mat-menu-item>Parent tasks</button>
+                        <button mat-menu-item>Type</button>
+                        <button mat-menu-item>Aggiungi gruppo personalizzato</button>
+                    </mat-menu>
+                    <button class="btn2" [matMenuTriggerFor]="menuThree">Preferiti</button>
+                    <mat-menu #menuThree="matMenu">
+                        <button mat-menu-item>Salva la ricerca corrente</button>
+                        <button mat-menu-item>Aggiungi alla mia bacheca</button>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="body"></div>

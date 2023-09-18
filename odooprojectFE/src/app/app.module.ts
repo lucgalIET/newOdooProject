@@ -17,6 +17,8 @@ import { AssignProgUserComponent } from './componenti/assign-prog-user/assign-pr
 import { AssignProgMessageComponent } from './componenti/allAboutAssignmentProg/assign-prog-message/assign-prog-message.component';
 import { AssignProgNoteComponent } from './componenti/allAboutAssignmentProg/assign-prog-note/assign-prog-note.component';
 import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg/assign-prog-activity/assign-prog-activity.component';
+import { AdminNavbarComponent } from './componenti/admin/admin-navbar/admin-navbar.component';
+import { AdminProjectsComponent } from './componenti/admin/admin-projects/admin-projects.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg
     AssignProgUserComponent,
     AssignProgMessageComponent,
     AssignProgNoteComponent,
-    AssignProgActivityComponent
+    AssignProgActivityComponent,
+    AdminNavbarComponent,
+    AdminProjectsComponent
   ],
   imports: [
     BrowserModule,
