@@ -1,0 +1,23 @@
+New Odoo -> KeyCloak
+
+Collegamenti a keycloak:
+
+realm name iet-sso
+
+client id dudu-app
+
+96KRUzv6SNbkYXnDUlbWxdKo85LS6ZsF
+
+Link Utili:
+
+Tutorial da seguire parte da: spring-boot 3 application
+
+http://webcache.googleusercontent.com/search?q=cache:https://ravthiru.medium.com/rbac-using-keycloak-with-spring-boot-3-0-af6bf3edcd38&sca_esv=565306219&strip=1&vwsrc=0
+
+https://github.com/ravthiru/keycloak-recepies/tree/master/springboot3-keycloak-rbac
+
+https://www.npmjs.com/package/keycloak-angular
+
+http://192.168.2.33:8585/
+
+http://192.168.2.33:9004 -> permission handler
