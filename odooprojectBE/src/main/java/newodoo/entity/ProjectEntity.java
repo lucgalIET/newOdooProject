@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import newodoo.Country;
+import newodoo.ProjectType;
 import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
@@ -32,7 +33,7 @@ public class ProjectEntity {
     //private String country;
 
     @Column(name = "project_type")
-    private String projectType;
+    private ProjectType projectType;
 
     @Column(name = "project_name")
     private String projectName;

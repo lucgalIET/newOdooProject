@@ -2,6 +2,7 @@ package newodoo.dto;
 
 import lombok.*;
 import newodoo.Country;
+import newodoo.ProjectType;
 import newodoo.entity.ProgramEntity;
 import newodoo.entity.SubProjectEntity;
 
@@ -16,7 +17,7 @@ public class ProjectDTO {
     private Long id;
     //private String country;
     private Country country;
-    private String projectType;
+    private ProjectType projectType;
     private String projectName;
     private LocalDate presumedStartingMonth;
     private LocalDate presumedEndMonth;
