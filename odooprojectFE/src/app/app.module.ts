@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
+import {CdkDrag, CdkDragPlaceholder, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,7 +42,11 @@ import { AdminProjectsComponent } from './componenti/admin/admin-projects/admin-
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    MatMenuModule
+    MatMenuModule,
+    CdkDrag,
+    CdkDragPlaceholder,
+    CdkDropList,
+    CdkDropListGroup
   ],
   providers: [],
   bootstrap: [AppComponent]
