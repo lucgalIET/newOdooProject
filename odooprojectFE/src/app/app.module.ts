@@ -20,6 +20,7 @@ import { AssignProgNoteComponent } from './componenti/allAboutAssignmentProg/ass
 import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg/assign-prog-activity/assign-prog-activity.component';
 import { AdminNavbarComponent } from './componenti/admin/admin-navbar/admin-navbar.component';
 import { AdminProjectsComponent } from './componenti/admin/admin-projects/admin-projects.component';
+import { AdminProjectCreateComponent } from './componenti/admin/admin-project-create/admin-project-create.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AdminProjectsComponent } from './componenti/admin/admin-projects/admin-
     AssignProgNoteComponent,
     AssignProgActivityComponent,
     AdminNavbarComponent,
-    AdminProjectsComponent
+    AdminProjectsComponent,
+    AdminProjectCreateComponent
   ],
   imports: [
     BrowserModule,
