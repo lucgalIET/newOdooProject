@@ -70,6 +70,8 @@ public class ExcelTimesheetService {
             }
             String[] nameAndSurnameArray = extractNameAndSurname(fileNameOnly, nameSurname1);
             TimeSheet ts = new TimeSheet(nameAndSurnameArray[0],nameAndSurnameArray[1],month1,year1);
+            double hoursTotal = 0.0;
+            int daysTotal = 0;
             //timesheet creato. è ora di riempirlo!
             boolean finished = false;
             int row = 4;
@@ -95,12 +97,42 @@ public class ExcelTimesheetService {
                     }
                     //tutti i dati sono validi. Inserisci la timesheetrow
                     TimeSheetRow tsRow = new TimeSheetRow(order,fare,date,hours,customer);
+                    if(!(ts.dayAlreadyInserted(date))){
+                        daysTotal++;
+                    }
                     ts.getTimeSheetRowList().add(tsRow);
+
+                    hoursTotal = hoursTotal + hours;
                 }catch(NumberFormatException e){
                     throw new ExcelFileProblemException("There is a row where hours can't be read!");
                 }
                 row++;
             }
+            //qui controlla che le ore totali siano quelle giuste e anche i giorni totali
+            int daysTotalField = 0;
+            double hoursTotalField = 0;
+            // cerca il campo dei giorni totali e quello delle ore totali nel file excel
+            int rowIndex = 0;
+            boolean found = false;
+            while(!found){
+                if(fileMap.get(rowIndex).get(0).equals("TOTALI MESE CORRENTE") && fileMap.get(rowIndex).get(1).equals("TOTALE ORE") && fileMap.get(rowIndex).get(2).equals("TOTALE GIORNI") && fileMap.get(rowIndex+1).get(0).equals("LAVORO")){
+                    found = true;
+                    try{
+                        hoursTotalField = Double.parseDouble(fileMap.get(rowIndex+1).get(1).replace(',', '.'));
+                        daysTotalField = (int)(Double.parseDouble(fileMap.get(rowIndex+1).get(2).replace(',', '.')));
+                        if(hoursTotalField != hoursTotal){
+                            throw new ExcelFileProblemException("You have inserted "+ hoursTotalField + " hours in the total hours field, but the sum of the hours you inserted is " + hoursTotal);
+                        }
+                        if(daysTotalField != daysTotal){
+                            throw new ExcelFileProblemException("You have inserted "+ daysTotalField + " days in the total days field, but the sum of the days you inserted is " + daysTotal);
+                        }
+                    }catch(NumberFormatException e){
+                        throw new ExcelFileProblemException("You have to fill correctly both the total days field and the total hours field!");
+                    }
+                }
+                rowIndex++;
+            }
+
             return ts;
         } catch (IOException e) {
             throw new ExcelFileProblemException("Cannot read excel file. An error occurred (IOException)");

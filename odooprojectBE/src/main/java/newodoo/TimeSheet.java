@@ -3,6 +3,7 @@ package newodoo;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
@@ -22,4 +23,12 @@ public class TimeSheet {
     private List<TimeSheetRow> timeSheetRowList;
 
 
+    public boolean dayAlreadyInserted(LocalDate date) {
+        for(TimeSheetRow tsRow : timeSheetRowList){
+            if(tsRow.getDate().equals(date)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
