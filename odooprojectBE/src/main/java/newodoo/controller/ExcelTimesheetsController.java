@@ -2,6 +2,7 @@ package newodoo.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import newodoo.TimeSheet;
+import newodoo.exceptions.ExcelFileProblemException;
 import newodoo.service.ExcelTimesheetService;
 import newodoo.service.ProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,23 @@ public class ExcelTimesheetsController {
     private ExcelTimesheetService excelTimesheetService;
 
     @PostMapping(value = "", consumes = {"multipart/form-data"})
-    public ResponseEntity<TimeSheet> uploadExcelTimesheet(@RequestParam("file") MultipartFile file){
+    public ResponseEntity<Object> uploadExcelTimesheet(@RequestParam("file") MultipartFile file){
         if(excelTimesheetService.uploadExcelFileToServer(file)){
-            TimeSheet ts = excelTimesheetService.extractTimeSheetFromFile(file.getOriginalFilename());
-            if(ts != null){
+            try {
+                TimeSheet ts = excelTimesheetService.extractTimeSheetFromFile(file.getOriginalFilename());
                 return ResponseEntity.ok(ts);
-            }else{
-                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+            }catch(ExcelFileProblemException e){
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
             }
-
-
         }else{
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    /*
     @GetMapping("")
     public ResponseEntity<String> testNameAndSurnameExtractor(@RequestParam("Filename") String filename, @RequestParam("NameSurname") String namesurname){
         String[] res = excelTimesheetService.extractNameAndSurname(filename, namesurname);
         return ResponseEntity.ok("Nome: " + res[0] + "; Cognome: " + res[1]);
     }
+    */
 }

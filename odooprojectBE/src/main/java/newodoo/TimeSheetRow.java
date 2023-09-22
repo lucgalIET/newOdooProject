@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 public class TimeSheetRow {
     private String order;
-    private String fare;
+    private double fare;
     private LocalDate date;
     private double hours;
     private String customer;

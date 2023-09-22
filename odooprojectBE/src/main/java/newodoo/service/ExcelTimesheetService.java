@@ -1,15 +1,16 @@
 package newodoo.service;
 
-import jxl.*;
-import jxl.read.biff.BiffException;
+
 import newodoo.TimeSheet;
 import newodoo.TimeSheetRow;
 import newodoo.exceptions.ExcelFileProblemException;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.OfficeXmlFileException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
+import org.apache.poi.ss.usermodel.*;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,8 +22,8 @@ import java.time.Month;
 import java.util.*;
 @Service
 public class ExcelTimesheetService {
-    @Value("${excelfiles.upload.dir}") // Configura questa property nel tuo application.properties o application.yml
-    private String uploadDir; // Percorso della cartella di caricamento delle immagini
+    @Value("${excel.files.upload.dir}")
+    private String uploadDir;
 
     public boolean uploadExcelFileToServer(MultipartFile file) {
         try {
@@ -36,64 +37,91 @@ public class ExcelTimesheetService {
     }
 
     /**
-     * Restituisce il timesheet leggendo il file excel caricato dall'utente
-     * @param filename Il nome del file che l'utente ha caricato
-     * @return Il timesheet se il file è valido e correttamente compilato, NULL altrimenti
+     * Returns timesheet by reading the Excel file uploaded by the user
+     * @param filename the name of the file uploaded by the user
+     * @return The TimeSheet if the Excel file is valid and correctly filled, else null
      */
     public TimeSheet extractTimeSheetFromFile(String filename) throws ExcelFileProblemException {
         String fileNameOnly = noExtension(filename);
         filename = Paths.get(uploadDir, filename).toString();
         try {
-            HashMap<Integer, List<String>> fileMap = (HashMap) readJExcel(filename);
+            Map<Integer, List<String>> fileMap = readExcel(filename);
+            //INIZIO CODICE DI STAMPA
+            System.out.println("fileMap contiene queste cose");
+            int fileMapIndex = 0;
+            while(fileMapIndex < 20){
+                if(fileMap.get(fileMapIndex) != null) {
+                    List<String> strings = fileMap.get(fileMapIndex);
+                    System.out.print("[");
+                    for (int i = 0; i < strings.size(); i++) {
+                        System.out.print(strings.get(i));
+                        if (i < strings.size() - 1) {
+                            System.out.print(", ");
+                        }
+                    }
+                    System.out.println("]");
+                }else{
+                    System.out.println("-------------------------");
+                }
+                fileMapIndex++;
+            }
+            //FINE CODICE DI STAMPA
+
             //la chiave di questa mappa è il numero della riga
             String nameSurname1 = fileMap.get(2).get(1).toLowerCase();
-            String dateStrings[] = fileMap.get(2).get(3).split("/");
-            int year1 = 0;
+            String[] dateStrings = fileMap.get(2).get(3).split("/");
+
+            int year1;
             try{
                 //System.out.println("dateStrings[1]: " + dateStrings[1] + " ; tokens[4]: " + tokens[4]);
                 year1 = Integer.parseInt(dateStrings[1]);
             }catch(NumberFormatException e){
-                throw new ExcelFileProblemException("Can't parse the written year");
+                throw new ExcelFileProblemException("Can't parse the written year"); //FUNZIONA
             }
-            int month1 = 0;
+            int month1;
             try{
                 month1 = Integer.parseInt(dateStrings[0]);
             }catch(NumberFormatException e){
-                throw new ExcelFileProblemException("Can't parse the written month");
+                throw new ExcelFileProblemException("Can't parse the written month"); //FUNZIONA
             }
-            //mese e anno del timesheet sono validi! puoi creare l'oggetto Timesheet!!
+            //month and year of timesheet are valid! you can create the Timesheet object!!
 
-
-            //qui controlla che tra name, surname, month e year ci sia il match!
+            //control that name, surname, month and year match!
             if(!fileNameAndContentMatch(fileNameOnly, nameSurname1, month1, year1)){
-                throw new ExcelFileProblemException("Name, surname, year and month don't match between the file name and the file content");
+                throw new ExcelFileProblemException("Name, surname, year and month don't match between the file name and the file content"); //FUNZIONA
             }
             String[] nameAndSurnameArray = extractNameAndSurname(fileNameOnly, nameSurname1);
             TimeSheet ts = new TimeSheet(nameAndSurnameArray[0],nameAndSurnameArray[1],month1,year1);
             double hoursTotal = 0.0;
             int daysTotal = 0;
-            //timesheet creato. è ora di riempirlo!
-            boolean finished = false;
+            //timesheet created. now fill it!
             int row = 4;
-            while(!finished){
+            while(true){
+                if(fileMap.get(row) == null || fileMap.get(row).size() == 0){
+                    row++;
+                    continue;
+                }
                 try {
                     if(noMoreRows(fileMap.get(row))){
-                        finished = true;
                         break;
                     }
                     String order = fileMap.get(row).get(0);
-                    String fare = fileMap.get(row).get(1);
+                    System.out.println(fileMap.get(row).get(1).replace(',', '.'));
+                    double fare = Double.parseDouble(noEuroSymbol(fileMap.get(row).get(1).replace(',', '.')));
                     LocalDate date = parseDate(fileMap.get(row).get(2));
                     double hours = Double.parseDouble(fileMap.get(row).get(3).replace(',', '.'));
                     if(hours <= 0){
-                        throw new ExcelFileProblemException("One or more rows have a zero or negative hours number");
+                        throw new ExcelFileProblemException("One or more rows have a zero or negative hours number"); //FUNZIONA
+                    }
+                    if(fare <= 0){
+                        throw new ExcelFileProblemException("One or more rows have a zero or negative fare"); //FUNZIONA
                     }
                     String customer = fileMap.get(row).get(4);
-                    if(order.equals("") || fare.equals("") || customer.equals("")){
-                        throw new ExcelFileProblemException("One or more rows are missing some information!");
+                    if(order.equals("") || customer.equals("")){
+                        throw new ExcelFileProblemException("One or more rows are missing some information!"); //FUNZIONA
                     }
                     if(date == null){
-                        throw new ExcelFileProblemException("One or more rows have a non-valid date");
+                        throw new ExcelFileProblemException("One or more rows have a non-valid date"); //FUNZIONA
                     }
                     //tutti i dati sono validi. Inserisci la timesheetrow
                     TimeSheetRow tsRow = new TimeSheetRow(order,fare,date,hours,customer);
@@ -104,30 +132,35 @@ public class ExcelTimesheetService {
 
                     hoursTotal = hoursTotal + hours;
                 }catch(NumberFormatException e){
-                    throw new ExcelFileProblemException("There is a row where hours can't be read!");
+                    throw new ExcelFileProblemException("There is a row where hours or fare can't be read!"); //FUNZIONA
                 }
                 row++;
             }
+            System.out.println("FINO A QUI CI SIAMO ARRIVATI");
             //qui controlla che le ore totali siano quelle giuste e anche i giorni totali
-            int daysTotalField = 0;
-            double hoursTotalField = 0;
+            int daysTotalField;
+            double hoursTotalField;
             // cerca il campo dei giorni totali e quello delle ore totali nel file excel
             int rowIndex = 0;
             boolean found = false;
             while(!found){
-                if(fileMap.get(rowIndex).get(0).equals("TOTALI MESE CORRENTE") && fileMap.get(rowIndex).get(1).equals("TOTALE ORE") && fileMap.get(rowIndex).get(2).equals("TOTALE GIORNI") && fileMap.get(rowIndex+1).get(0).equals("LAVORO")){
+                if(fileMap.get(rowIndex) ==  null  || fileMap.get(rowIndex).size() == 0){
+                    rowIndex++;
+                    continue;
+                }
+                if(fileMap.get(rowIndex).get(0).equals("TOTALI MESE CORRENTE") && fileMap.get(rowIndex).get(1).equals("TOTALE ORE") && fileMap.get(rowIndex).get(2).equals("TOTALE GIORNI") && fileMap.get(rowIndex+1).get(0).equals("LAVORO")){ // è qui che si blocca tutto
                     found = true;
                     try{
                         hoursTotalField = Double.parseDouble(fileMap.get(rowIndex+1).get(1).replace(',', '.'));
                         daysTotalField = (int)(Double.parseDouble(fileMap.get(rowIndex+1).get(2).replace(',', '.')));
                         if(hoursTotalField != hoursTotal){
-                            throw new ExcelFileProblemException("You have inserted "+ hoursTotalField + " hours in the total hours field, but the sum of the hours you inserted is " + hoursTotal);
+                            throw new ExcelFileProblemException("You have inserted "+ hoursTotalField + " hours in the total hours field, but the sum of the hours you inserted is " + hoursTotal); //FUNZIONA
                         }
                         if(daysTotalField != daysTotal){
-                            throw new ExcelFileProblemException("You have inserted "+ daysTotalField + " days in the total days field, but the sum of the days you inserted is " + daysTotal);
+                            throw new ExcelFileProblemException("You have inserted "+ daysTotalField + " days in the total days field, but the sum of the days you inserted is " + daysTotal); //FUNZIONA
                         }
                     }catch(NumberFormatException e){
-                        throw new ExcelFileProblemException("You have to fill correctly both the total days field and the total hours field!");
+                        throw new ExcelFileProblemException("You have to fill correctly both the total days field and the total hours field!"); //FUNZIONA
                     }
                 }
                 rowIndex++;
@@ -136,21 +169,22 @@ public class ExcelTimesheetService {
             return ts;
         } catch (IOException e) {
             throw new ExcelFileProblemException("Cannot read excel file. An error occurred (IOException)");
-        } catch (BiffException e) {
-            throw new ExcelFileProblemException("Cannot read excel file. An error occurred (BiffException)");
-        }catch(IndexOutOfBoundsException e){
-            throw new ExcelFileProblemException("The file hasn't been compiled properly. Please check it");
+        }catch(IndexOutOfBoundsException | NullPointerException e){
+            throw new ExcelFileProblemException("The file hasn't been compiled properly. Please check it"); //FUNZIONA
+        }catch(OfficeXmlFileException e){
+            throw new ExcelFileProblemException("This is not a .xls file (Excel 97 - Excel 2003)");
         }
     }
 
+    private String noEuroSymbol(String str) {
+        return str.replace("\"€\"","");
+    }
+
     /**
-     * Funzione chiamata solo quando fileNameAndContentMatch restituisce true!
+     * Function called only when fileNameAndContentMatch returns true!
      */
     public String[] extractNameAndSurname(String fileNameOnly, String nameSurname) {
-        int spaceDivisorPosition = 0;
-        String[] tokens = fileNameOnly.split("_");
-        String names = tokens[1];
-        String surnames = tokens[2];
+        int spaceDivisorPosition;
         int fileNameIndex = 3;
         int nameSurnameIndex = 0;
         while(nameSurname.charAt(nameSurnameIndex) == ' '){
@@ -162,7 +196,7 @@ public class ExcelTimesheetService {
                 nameSurnameIndex++;
                 found = true;
             }else {
-                //manda avanti i due cursori
+                //move the two indexes forwards
                 fileNameIndex++;
                 nameSurnameIndex++;
                 while (nameSurname.charAt(nameSurnameIndex) == ' ') {
@@ -173,7 +207,7 @@ public class ExcelTimesheetService {
         spaceDivisorPosition = nameSurnameIndex;
         String[] nameAndSurnameArray = new String[2];
         nameAndSurnameArray[0] = nameSurname.substring(0,spaceDivisorPosition);
-        nameAndSurnameArray[1] = nameSurname.substring(spaceDivisorPosition+1,nameSurname.length());
+        nameAndSurnameArray[1] = nameSurname.substring(spaceDivisorPosition+1);
         return nameAndSurnameArray;
     }
 
@@ -188,34 +222,29 @@ public class ExcelTimesheetService {
             }
             nameSurname1 = noSpaces(nameSurname1);
             nameSurname1 = nameSurname1.toLowerCase();
-            String nameSurname2 = "";
+            StringBuilder nameSurname2 = new StringBuilder();
             for(int i = 1;i < tokens.length-2;i++){
-                nameSurname2 = nameSurname2 + tokens[i];
+                nameSurname2.append(tokens[i]);
             }
-            nameSurname2 = nameSurname2.toLowerCase();
-            if(!(nameSurname1.equals(nameSurname2))){
-                return false;
-            }
-            return true;
+            return nameSurname1.equals(nameSurname2.toString().toLowerCase());
         }catch(NumberFormatException e){
             return false;
         }
     }
 
     private String noSpaces(String nameSurname1) {
-        String toReturn = "";
+        StringBuilder toReturn = new StringBuilder();
         for(int i = 0;i < nameSurname1.length();i++){
             if(nameSurname1.charAt(i) != ' '){
-                toReturn += nameSurname1.charAt(i);
+                toReturn.append(nameSurname1.charAt(i));
             }
         }
-        return toReturn;
+        return toReturn.toString();
     }
 
     /**
-     * Rimuove l'estensione dal nome del file, se presente
-     * @param filename
-     * @return Il nome del file senza estensione
+     * Removes file extension from the string, if present
+     * @return The file name without extension
      */
     private String noExtension(String filename) {
         int i = filename.length()-1;
@@ -230,11 +259,12 @@ public class ExcelTimesheetService {
 
     /**
      *
-     * @param strings
+     *
      * @return TRUE se questa riga non è più una riga della tabella del timesheet
      */
     private boolean noMoreRows(List<String> strings) {
         boolean empty = true;
+
         for(int i = 0;i < 5;i++){
             if(!strings.get(i).equals("")){
                 empty = false;
@@ -244,15 +274,12 @@ public class ExcelTimesheetService {
         if(empty){
             return true;
         }
-        if(strings.get(0).equals("TOTALI MESE CORRENTE") && strings.get(1).equals("TOTALE ORE") && strings.get(2).equals("TOTALE GIORNI")){
-            return true;
-        }
-        return false;
+        return strings.get(0).equals("TOTALI MESE CORRENTE") && strings.get(1).equals("TOTALE ORE") && strings.get(2).equals("TOTALE GIORNI");
     }
 
     /**
      *
-     * @param dateString
+     *
      * @return NULL se la data non è valida oppure è futura
      */
     private LocalDate parseDate(String dateString) {
@@ -265,9 +292,7 @@ public class ExcelTimesheetService {
                 return null;
             }
             return date;
-        }catch(NumberFormatException e){
-            return null;
-        }catch(DateTimeException e){
+        }catch(NumberFormatException | DateTimeException e){
             return null;
         }
     }
@@ -290,32 +315,39 @@ public class ExcelTimesheetService {
         return -1;
     }
 
-    private Map<Integer, List<String>> readJExcel(String fileLocation)
-            throws IOException, BiffException {
+    public static Map<Integer, List<String>> readExcel(String excelFilePath) throws IOException, OfficeXmlFileException{ //al posto di string c'era object
+        Map<Integer, List<String>> cellData = new HashMap<>(); //al posto di string c'era object
+            FileInputStream fileInputStream = new FileInputStream(excelFilePath);
+            Workbook workbook = new HSSFWorkbook(fileInputStream);
 
-        Map<Integer, List<String>> data = new HashMap<>();
+            int numberOfSheets = workbook.getNumberOfSheets();
 
-        Workbook workbook = Workbook.getWorkbook(new File(fileLocation));
-        Sheet sheet = workbook.getSheet(0);
-        int rows = sheet.getRows();
-        int columns = sheet.getColumns();
+            for (int i = 0; i < numberOfSheets; i++) {
+                Sheet sheet = workbook.getSheetAt(i);
 
-        for (int i = 0; i < rows; i++) {
-            data.put(i, new ArrayList<String>());
-            for (int j = 0; j < columns; j++) {
-                if(sheet.getCell(j,i).getType().equals(CellType.DATE)){
-                    Cell cell = sheet.getCell(j,i);
-                    Date date = ((DateCell) cell).getDate();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    String formattedDate = dateFormat.format(date);
-                    data.get(i).add(formattedDate);
-                }else{
-                    data.get(i).add(sheet.getCell(j, i).getContents());
+                for (Row row : sheet) {
+                    List<String> rowData = new ArrayList<>();
+
+                    for (Cell cell : row) {
+                        String cellValue;
+                        if (cell.getCellType().equals(CellType.NUMERIC) && DateUtil.isCellDateFormatted(cell)) {
+                            Date cellDate = cell.getDateCellValue();
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                            cellValue = dateFormat.format(cellDate);
+                        } else {
+                            cellValue = cell.toString();
+                        }
+                        rowData.add(cellValue);
+                    }
+
+                    cellData.put(row.getRowNum(), rowData);
                 }
-
             }
-        }
-        return data;
+
+            fileInputStream.close();
+
+
+        return cellData;
     }
 
 
