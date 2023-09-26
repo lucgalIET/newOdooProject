@@ -4,7 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
+
 import {CdkDrag, CdkDragPlaceholder, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
+
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,9 +26,29 @@ import { AssignProgUserComponent } from './componenti/assign-prog-user/assign-pr
 import { AssignProgMessageComponent } from './componenti/allAboutAssignmentProg/assign-prog-message/assign-prog-message.component';
 import { AssignProgNoteComponent } from './componenti/allAboutAssignmentProg/assign-prog-note/assign-prog-note.component';
 import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg/assign-prog-activity/assign-prog-activity.component';
+
 import { AdminNavbarComponent } from './componenti/admin/admin-navbar/admin-navbar.component';
 import { AdminProjectsComponent } from './componenti/admin/admin-projects/admin-projects.component';
 import { AdminProjectCreateComponent } from './componenti/admin/admin-project-create/admin-project-create.component';
+import { ProgettiComponent } from './componenti/progetti/progetti.component';
+import { ProjectDialogBodyComponent } from './project-dialog-body/project-dialog-body.component';
+
+
+// function initializeKeycloak(keycloak: KeycloakService) {
+//   return () =>
+//     keycloak.init({
+//       config: {
+//         url: 'http://docker.iet.it:8585',
+//         realm: 'iet-sso',
+//         clientId: 'dudu-app'
+//       },
+//       initOptions: {
+//         onLoad: 'check-sso',
+//         silentCheckSsoRedirectUri:
+//           window.location.origin + '/assets/silent-check-sso.html'
+//       }
+//     });
+// }
 
 @NgModule({
   declarations: [
@@ -35,9 +63,12 @@ import { AdminProjectCreateComponent } from './componenti/admin/admin-project-cr
     AssignProgMessageComponent,
     AssignProgNoteComponent,
     AssignProgActivityComponent,
+
     AdminNavbarComponent,
     AdminProjectsComponent,
-    AdminProjectCreateComponent
+    AdminProjectCreateComponent,
+    ProgettiComponent,
+    ProjectDialogBodyComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +79,12 @@ import { AdminProjectCreateComponent } from './componenti/admin/admin-project-cr
     CdkDrag,
     CdkDragPlaceholder,
     CdkDropList,
-    CdkDropListGroup
+    CdkDropListGroup,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

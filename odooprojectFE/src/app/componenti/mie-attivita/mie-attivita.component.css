@@ -20,18 +20,27 @@
     margin-top: 14px; */
 }
 
+<<<<<<< Updated upstream
 .import{
     /* padding-top: 15px; */
     margin-left: 20px;
     margin-top: -3px;
 }
 
+=======
+>>>>>>> Stashed changes
 .import .btn{
+    /* padding-top: 15px; */
+    
     background-color: white;
     height: 30px;
     border: solid 0.5px black;
     font-weight: 600;
     cursor: pointer;
+}
+
+.import{
+    margin-left: 20px;
 }
 
 .col-2{
