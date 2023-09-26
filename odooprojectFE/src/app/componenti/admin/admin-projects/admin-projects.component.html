@@ -62,7 +62,19 @@
         </div>
 
         <div class="task-container" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
-            <div class="task" *ngFor="let item of column.tasks" cdkDrag>{{item}}</div>
+            <div class="task" *ngFor="let item of column.tasks" cdkDrag>
+                <div class="flexbox">
+                    <span class="item">{{item}}</span>
+                    <mat-icon class="icon">more_vert</mat-icon>
+                </div>
+                <div class="flex">
+                    <div class="activity">
+                        <span class="quantity">0 </span>
+                        <span class="activities">Attività</span>
+                    </div>
+                    <span class="overview">Panoramica</span>
+                </div>
+            </div>
         </div>
     </div>
 
