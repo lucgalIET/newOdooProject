@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import {CdkDrag, CdkDragPlaceholder, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
+import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,8 @@ import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg
 import { AdminNavbarComponent } from './componenti/admin/admin-navbar/admin-navbar.component';
 import { AdminProjectsComponent } from './componenti/admin/admin-projects/admin-projects.component';
 import { AdminProjectCreateComponent } from './componenti/admin/admin-project-create/admin-project-create.component';
+import { AdminProjActivitiesComponent } from './componenti/admin/admin-proj-activities/admin-proj-activities.component';
+import { AdminProjActivityDetailsComponent } from './componenti/admin/admin-proj-activity-details/admin-proj-activity-details.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { AdminProjectCreateComponent } from './componenti/admin/admin-project-cr
     AssignProgActivityComponent,
     AdminNavbarComponent,
     AdminProjectsComponent,
-    AdminProjectCreateComponent
+    AdminProjectCreateComponent,
+    AdminProjActivitiesComponent,
+    AdminProjActivityDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import { AdminProjectCreateComponent } from './componenti/admin/admin-project-cr
     CdkDrag,
     CdkDragPlaceholder,
     CdkDropList,
-    CdkDropListGroup
+    CdkDropListGroup,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
