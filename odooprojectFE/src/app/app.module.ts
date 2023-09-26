@@ -13,7 +13,6 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './componenti/navbar/navbar.component';
@@ -30,6 +29,9 @@ import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg
 import { AdminNavbarComponent } from './componenti/admin/admin-navbar/admin-navbar.component';
 import { AdminProjectsComponent } from './componenti/admin/admin-projects/admin-projects.component';
 import { AdminProjectCreateComponent } from './componenti/admin/admin-project-create/admin-project-create.component';
+import { AdminProjActivitiesComponent } from './componenti/admin/admin-proj-activities/admin-proj-activities.component';
+import { AdminProjActivityDetailsComponent } from './componenti/admin/admin-proj-activity-details/admin-proj-activity-details.component';
+
 import { ProgettiComponent } from './componenti/progetti/progetti.component';
 import { ProjectDialogBodyComponent } from './project-dialog-body/project-dialog-body.component';
 
@@ -68,7 +70,10 @@ import { ProjectDialogBodyComponent } from './project-dialog-body/project-dialog
     AdminProjectsComponent,
     AdminProjectCreateComponent,
     ProgettiComponent,
-    ProjectDialogBodyComponent
+    ProjectDialogBodyComponent,
+    AdminProjectCreateComponent,
+    AdminProjActivityDetailsComponent,
+    AdminProjActivitiesComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +89,8 @@ import { ProjectDialogBodyComponent } from './project-dialog-body/project-dialog
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    CdkDropListGroup
   ],
   providers: [],
   bootstrap: [AppComponent]
