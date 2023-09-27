@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,22 +26,16 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
-    private ModelMapper modelMapper;
 
     @Autowired
     private ProjectMapper projectMapper;
 
-    @Autowired
-    public ProjectController(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
-
     @PostMapping("")
     @Operation(description = "Adds a new project to the repository and gives it an id")
     public ResponseEntity<ProjectDTO>addProject(@RequestBody @Schema(description = "The new project in a JSON format") ProjectDTO projectDTO){
-        ProjectEntity projectEntity=modelMapper.map(projectDTO, ProjectEntity.class);
+        ProjectEntity projectEntity=projectMapper.toEntity(projectDTO);
         ProjectEntity projectEntity1=projectService.saveProject(projectEntity);
-        ProjectDTO projectDTO1=modelMapper.map(projectEntity1, ProjectDTO.class);
+        ProjectDTO projectDTO1=projectMapper.toDTO(projectEntity1);
         return ResponseEntity.status(HttpStatus.CREATED).body(projectDTO1);
     }
 
@@ -71,7 +66,7 @@ public class ProjectController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(projectNotFoundException.getMessage())
             }*/
 
-        ProjectDTO projectDTO = modelMapper.map(projectEntity, ProjectDTO.class);
+        ProjectDTO projectDTO = projectMapper.toDTO(projectEntity);
         return ResponseEntity.ok(projectDTO);
     }
 
@@ -81,7 +76,7 @@ public class ProjectController {
         boolean isFirst=false;
         ProjectEntity projectEntity = projectService.updateProject(id, projectDTO, isFirst);
 
-        ProjectDTO projectDTO1 = modelMapper.map(projectEntity, ProjectDTO.class);
+        ProjectDTO projectDTO1 = projectMapper.toDTO(projectEntity);
 
         return ResponseEntity.ok(projectDTO1);
     }
@@ -93,7 +88,7 @@ public class ProjectController {
 
         ProjectEntity projectEntity = projectService.updateProject(id, projectDTO, isFirst);
 
-        ProjectDTO projectDTO1 = modelMapper.map(projectEntity, ProjectDTO.class);
+        ProjectDTO projectDTO1 = projectMapper.toDTO(projectEntity);
 
         return ResponseEntity.ok(projectDTO1);
     }
@@ -104,7 +99,7 @@ public class ProjectController {
 
         ProjectEntity projectEntity = projectService.updateProject(id, projectDTO, isFirst);
 
-        ProjectDTO projectDTO1 = modelMapper.map(projectEntity, ProjectDTO.class);
+        ProjectDTO projectDTO1 = projectMapper.toDTO(projectEntity);
 
         return ResponseEntity.ok(projectDTO1);
     }
@@ -114,5 +109,15 @@ public class ProjectController {
     public ResponseEntity<String>deleteProject(@Parameter(description = "The id of the project to delete") @PathVariable Long id){
         projectService.deleteProject(id);
         return ResponseEntity.ok("Project " + id + " deleted");
+    }
+    @GetMapping("/test1")
+    @PreAuthorize("hasRole('client_user')")
+    public String keycloakTestMethod1(){
+        return "Ti saluto dal metodo 1";
+    }
+    @GetMapping("/test2")
+    @PreAuthorize("hasRole('client_admin')")
+    public String keycloakTestMethod2(){
+        return "Ti saluto dal metodo 2";
     }
 }

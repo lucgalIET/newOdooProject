@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import newodoo.dto.SubProjectDTO;
 import newodoo.entity.SubProjectEntity;
+import newodoo.mapper.SubProjectMapper;
 import newodoo.service.SubProjectService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +24,15 @@ import java.util.stream.Collectors;
 public class SubProjectController {
     @Autowired
     private SubProjectService subProjectService;
-    private ModelMapper modelMapper;
-    @Autowired
-    public SubProjectController(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
 
+    @Autowired
+    private SubProjectMapper subProjectMapper;
     @PostMapping("")
     @Operation(description = "Adds a new subproject to the repository and gives it an id")
     public ResponseEntity<SubProjectDTO>addSubProject(@RequestBody @Schema(description = "The new subproject in a JSON format") SubProjectDTO subProjectDTO){
-        SubProjectEntity subProjectEntity = modelMapper.map(subProjectDTO, SubProjectEntity.class);
+        SubProjectEntity subProjectEntity = subProjectMapper.toEntity(subProjectDTO);
         SubProjectEntity subProjectEntity1=subProjectService.saveSubProject(subProjectEntity);
-        SubProjectDTO subProjectDTO1 = modelMapper.map(subProjectEntity1, SubProjectDTO.class);
+        SubProjectDTO subProjectDTO1 = subProjectMapper.toDTO(subProjectEntity1);
         return ResponseEntity.status(HttpStatus.CREATED).body(subProjectDTO1);
     }
 
@@ -43,7 +41,7 @@ public class SubProjectController {
     public ResponseEntity<List<SubProjectDTO>>getAllSubProject(){
         List<SubProjectEntity> subProjectEntities=subProjectService.getAllSubProjects();
         List<SubProjectDTO> subProjectDTO = subProjectEntities.stream()
-                .map(subProject -> modelMapper.map(subProject, SubProjectDTO.class))
+                .map(subProject -> subProjectMapper.toDTO(subProject))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(subProjectDTO);
     }
@@ -56,7 +54,7 @@ public class SubProjectController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }*/
 
-        SubProjectDTO subProjectDTO = modelMapper.map(subProjectEntity, SubProjectDTO.class);
+        SubProjectDTO subProjectDTO = subProjectMapper.toDTO(subProjectEntity);
         return ResponseEntity.ok(subProjectDTO);
     }
 
@@ -66,7 +64,7 @@ public class SubProjectController {
 
         SubProjectEntity subProjectEntity=subProjectService.updateSubProject(id, subProjectDTO);
 
-        SubProjectDTO subProjectDTO1 = modelMapper.map(subProjectEntity, SubProjectDTO.class);
+        SubProjectDTO subProjectDTO1 = subProjectMapper.toDTO(subProjectEntity);
 
         return ResponseEntity.ok(subProjectDTO1);
     }
@@ -76,7 +74,7 @@ public class SubProjectController {
 
         SubProjectEntity subProjectEntity=subProjectService.updateSubProject(id, subProjectDTO);
 
-        SubProjectDTO subProjectDTO1 = modelMapper.map(subProjectEntity, SubProjectDTO.class);
+        SubProjectDTO subProjectDTO1 = subProjectMapper.toDTO(subProjectEntity);
 
         return ResponseEntity.ok(subProjectDTO1);
     }
