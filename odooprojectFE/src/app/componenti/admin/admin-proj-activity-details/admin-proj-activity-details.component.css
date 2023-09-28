@@ -1,0 +1,248 @@
+.header{
+    width: 100%;
+    height: 110px;
+    background-color: white;
+    margin-top: 51px;
+    border-bottom: 1px solid black;
+}
+
+.title{
+    padding-top: 0.5px;
+    margin-left: 20px;
+    font-size: 15.5px;
+}
+
+.projects{
+    color: rgb(188, 188, 188);
+}
+
+.buttons{
+    text-align: center;
+}
+
+.buttons .btn{
+    background-color: white;
+    height: 24px;
+    border: solid 0.8px rgba(101, 101, 101, 0.384);
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.btns{
+    border-bottom: 1px solid black;
+    padding: 5px 0 5px 20px;
+}
+
+.btns .btn{
+    background-color: #213F6A;
+    color: white;
+    height: 30px;
+    border: solid 0.5px black;
+    cursor: pointer;
+    padding: 0 15px;
+}
+
+.btns .share{
+    background-color: white;
+    margin-left: 15px;
+    height: 30px;
+    border: solid 0.5px black;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.section{
+    width: 100%;
+    /* height: 130px; */
+    background-color: white;
+    /* margin-top: 51px; */
+    border-bottom: 1px solid black;
+    display: flex;
+}
+
+.body{
+    width: 100%;
+    height: 100%;
+    min-height: 550px;
+    background-color: #ffffff;
+    /* background-color: red; */
+    /* margin-bottom: 50px; */
+    z-index: -1;
+}
+
+.body section{
+    width: 100%;
+    min-height: 350px;
+    position: relative;
+}
+
+.body .part1{
+    background-color: #d3d3d3a9;
+    border-bottom: 1px solid black;
+}
+
+.body .card{
+    width: 970px;
+    height: 320px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -160px 0 0 -500px;
+    border: 1px solid black;
+}
+
+.title h3{
+    font-size: 32px;
+    margin-top: -10px;
+}
+
+.flex{
+    display: flex;
+    margin-top: -44px;
+}
+
+.block{
+    flex-basis: 40%;
+}
+
+.list1{
+    margin-bottom: 17px;
+    font-weight: 600;
+    margin-left: -18px;
+    cursor: default;
+}
+
+.list1 ul li{
+    list-style-type: none;
+    padding-top: 12px;
+    font-size: 13px;
+}
+
+.hr{
+    margin-left: 196px;
+    margin-top: -148px;
+    border-left: solid 1px rgb(188, 188, 188);
+    width: 1px;
+    height: 146px;
+}
+
+.hr1{
+    margin-left: 196px;
+    margin-top: -94px;
+    border-left: solid 1px rgb(188, 188, 188);
+    width: 1px;
+    height: 146px;
+}
+
+.part2{
+    background-color: #ffffff;
+}
+
+.flexbox{
+    display: flex;
+    justify-content: space-between;
+    width: 1310px;
+}
+
+.actions ul{
+    display: flex;
+    margin-left: 190px;
+    margin-top: -6px;
+    margin-bottom: 18px;
+}
+
+.actions ul li{
+    margin-left: 25px;
+    list-style-type: none;
+    z-index: 1;
+}
+
+.actions ul li a{
+    text-decoration: none;
+    color: #213F6A;
+    font-size: 13px;
+    padding-left: 12px;
+    cursor: pointer;
+}
+
+.segui{
+    display: flex;
+    margin-top: 14px;
+    margin-right: 85px;
+}
+
+.segui p{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.line{
+    display: flex;
+    align-items: center;
+    width: 970px;
+    margin-left: 255px;
+    margin-top: 30px;
+}
+
+.line::before, .line::after{
+    content: "";
+    flex-grow: 1;
+    border-bottom: 1px solid black;
+}
+
+.text{
+    padding: 0 10px;
+}
+
+.box2{
+    margin-left: 255px;
+    margin-top: 30px;
+    width: 970px;
+    height: fit-content;
+    min-height: 100px;
+    background-color: rgb(238, 238, 238);
+    border-bottom: solid 1px black;
+}
+
+.image2{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: red;
+    margin-left: 20px;
+    margin-top: 10px;
+    float: left;
+}
+
+.name{
+    font-weight: 600;
+}
+
+.date{
+    font-size: 13px;
+    color: rgb(168, 168, 168);
+}
+
+.box2 p{
+    margin-left: 90px;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+.box2 .subtitle{
+    margin-top: -15px;
+    margin-left: 15px;
+}
+
+.box2 ul{
+    margin-left: 80px;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
+.box2 ul li{
+    margin-bottom: 5px;
+    font-size: 14px;
+}

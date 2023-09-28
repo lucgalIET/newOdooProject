@@ -53,29 +53,59 @@
         </div>
     </div>
 </div>
-<div class="body" cdkDropListGroup>
-
-    <div class="column" *ngFor="let column of projects.columns">
-
-        <div class="title-container">
-            <span>{{column.name}}</span>
+<div class="body">
+    <div class="container">
+        <div class="titleCreate">
+            <h4>Creazione progetto</h4>
         </div>
-
-        <div class="task-container" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
-            <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-                <div class="flexbox">
-                    <span class="item">{{item}}</span>
-                    <mat-icon class="icon">more_vert</mat-icon>
-                </div>
-                <div class="flex">
-                    <div class="activity">
-                        <span class="quantity">0 </span>
-                        <span class="activities">Attività</span>
-                    </div>
-                    <span class="overview">Panoramica</span>
-                </div>
+        <div class="section">
+            <div class="list1">
+                <ul>
+                    <li>Nome progetto</li>
+                    <li>Tags</li>
+                    <li>Project Status</li>
+                    <li>Abilitare i fogli ore</li>
+                    <li>Require tasks on Timesheets</li>
+                    <li>Require role in Timesheets</li>
+                    <li>Limit Timesheet role to Assignments</li>
+                    <li>Use milestones</li>
+                </ul>
+            </div>
+            <div class="hr"></div>
+            <div class="list2">
+                <ul class="first">
+                    <li>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <input type="text">
+                    </li>
+                </ul>
+                <ul class="second">
+                    <li>
+                        <input type="checkbox">
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                    </li>
+                </ul>
             </div>
         </div>
+        <div class="btnsCreate">
+            <button class="btn3">Crea</button>
+            <button class="cancel" routerLink="">Annulla</button>
+        </div>
     </div>
-
 </div>

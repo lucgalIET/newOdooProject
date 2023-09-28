@@ -2,7 +2,10 @@
 <div class="header">
     <div class="col-1">
         <div class="title">
-            <h2>Progetti</h2>
+            <h2>
+                <span class="projects">Progetti</span>
+                <span> / Attività</span>
+            </h2>
         </div>
         <div class="btns">
             <button class="btn">Crea</button>
@@ -63,17 +66,7 @@
 
         <div class="task-container" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
             <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-                <div class="flexbox">
-                    <span class="item">{{item}}</span>
-                    <mat-icon class="icon">more_vert</mat-icon>
-                </div>
-                <div class="flex">
-                    <div class="activity">
-                        <span class="quantity">0 </span>
-                        <span class="activities">Attività</span>
-                    </div>
-                    <span class="overview">Panoramica</span>
-                </div>
+                {{item}}
             </div>
         </div>
     </div>

@@ -27,11 +27,16 @@
 }
 
 .import .btn{
+    /* padding-top: 15px; */
     background-color: white;
     height: 30px;
     border: solid 0.5px black;
     font-weight: 600;
     cursor: pointer;
+}
+
+.import{
+    margin-left: 20px;
 }
 
 .col-2{
@@ -94,8 +99,9 @@
 .btn1 .add span{
     font-size: 50px;
     position: absolute;
-    left: 9px;
-    bottom: 0.3px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: black;
 }
 
