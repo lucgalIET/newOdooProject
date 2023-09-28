@@ -6,6 +6,17 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
+<<<<<<< Updated upstream
+=======
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import {CdkDrag, CdkDragPlaceholder, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
+
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+>>>>>>> Stashed changes
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,21 +32,24 @@ import { AssignProgNoteComponent } from './componenti/allAboutAssignmentProg/ass
 import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg/assign-prog-activity/assign-prog-activity.component';
 
 
-// function initializeKeycloak(keycloak: KeycloakService) {
-//   return () =>
-//     keycloak.init({
-//       config: {
-//         url: 'http://docker.iet.it:8585',
-//         realm: 'iet-sso',
-//         clientId: 'dudu-app'
-//       },
-//       initOptions: {
-//         onLoad: 'check-sso',
-//         silentCheckSsoRedirectUri:
-//           window.location.origin + '/assets/silent-check-sso.html'
-//       }
-//     });
-// }
+
+ function initializeKeycloak(keycloak: KeycloakService) {
+   return () =>
+     keycloak.init({
+       config: {
+         url: 'http://192.168.2.33:8585/',
+         realm: 'iet-sso-test',
+         clientId: 'dudu-app-test'
+       },
+       initOptions: {
+         onLoad: 'check-sso',
+         silentCheckSsoRedirectUri:
+           window.location.origin + '/assets/silent-check-sso.html'
+       }
+     });
+ }
+
+
 
 
 @NgModule({
@@ -57,6 +71,7 @@ import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
+<<<<<<< Updated upstream
     KeycloakAngularModule,
     MatMenuModule
   ],
@@ -68,6 +83,29 @@ import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg
     //   deps: [KeycloakService]
     // }
   ],
+=======
+    MatMenuModule,
+    CdkDrag,
+    CdkDragPlaceholder,
+    KeycloakAngularModule,
+    CdkDropList,
+    CdkDropListGroup,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
+    CdkDropListGroup
+  ],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
+>>>>>>> Stashed changes
   bootstrap: [AppComponent]
 })
 export class AppModule { }

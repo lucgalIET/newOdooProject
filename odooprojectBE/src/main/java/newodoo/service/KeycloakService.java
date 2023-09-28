@@ -14,7 +14,7 @@ public class KeycloakService {
     }
 
     public String createTestUser() {
-        String keycloakBaseUrl = "http://192.168.2.33/auth/realms/iet-sso-test";
+        String keycloakBaseUrl = "http://192.168.2.33:8585/auth/realms/iet-sso-test";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
