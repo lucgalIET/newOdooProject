@@ -24,8 +24,8 @@ public class EmailService {
 
         javaMailSender.send(message);*/
 
-        SimpleMailMessage message=new SimpleMailMessage();
-        message.setFrom("giuseppesorbello98.ct@gmail.com");
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("luca.galiero@iet.it");
         message.setTo(toEmail);//DA PERSONALIZZARE
         message.setSubject(subject);
         message.setText("SEI IL PM DESIGNATO \n" + verificationLink);
@@ -47,8 +47,8 @@ public class EmailService {
 
         javaMailSender.send(message);*/
 
-        SimpleMailMessage message=new SimpleMailMessage();
-        message.setFrom("giuseppesorbello98.ct@gmail.com");
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("luca.galiero@iet.it");
         message.setTo(toEmail);//DA PERSONALIZZARE
         message.setSubject(subject);
         message.setText("SEI IL TL DESIGNATO \n" + verificationLink);

@@ -34,7 +34,6 @@ public class ProgramEntity {
     private Long idCoo;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idProgram")
-    // Attributo nella classe Project che fa riferimento a program
     @JsonBackReference
     private List<ProjectEntity> projects;
 

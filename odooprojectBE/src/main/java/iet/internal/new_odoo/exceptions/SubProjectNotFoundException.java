@@ -9,7 +9,7 @@ public class SubProjectNotFoundException extends RuntimeException {
         super();
     }
 
-    public SubProjectNotFoundException(String messaggio) {
-        super(messaggio);
+    public SubProjectNotFoundException(String message) {
+        super(message);
     }
 }

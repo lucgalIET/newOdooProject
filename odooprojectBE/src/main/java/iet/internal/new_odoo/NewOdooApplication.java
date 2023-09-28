@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NewodooApplication {
+public class NewOdooApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NewodooApplication.class, args);
+        SpringApplication.run(NewOdooApplication.class, args);
     }
 
 }

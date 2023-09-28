@@ -9,7 +9,7 @@ public class ProjectNotFoundException extends RuntimeException {
         super();
     }
 
-    public ProjectNotFoundException(String messaggio) {
-        super(messaggio);
+    public ProjectNotFoundException(String message) {
+        super(message);
     }
 }

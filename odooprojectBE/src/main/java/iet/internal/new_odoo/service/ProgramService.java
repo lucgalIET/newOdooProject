@@ -18,10 +18,6 @@ public class ProgramService {
     @Autowired
     private ProgramRepository programRepository;
 
-    //aggiungi un programma (C)
-    //trova un programma (R)
-    //aggiorna un programma (U)
-    //cancella un programma (D)
     public ProgramEntity saveProgram(ProgramEntity program) {
         return programRepository.save(program);
     }
