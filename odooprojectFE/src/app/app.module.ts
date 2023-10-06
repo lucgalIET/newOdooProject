@@ -6,9 +6,6 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
-<<<<<<< Updated upstream
-=======
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import {CdkDrag, CdkDragPlaceholder, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
 
 import {MatIconModule} from '@angular/material/icon';
@@ -16,7 +13,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
->>>>>>> Stashed changes
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -71,19 +67,8 @@ import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
-<<<<<<< Updated upstream
     KeycloakAngularModule,
-    MatMenuModule
-  ],
-  providers: [
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initializeKeycloak,
-    //   multi: true,
-    //   deps: [KeycloakService]
-    // }
-  ],
-=======
+    MatMenuModule,
     MatMenuModule,
     CdkDrag,
     CdkDragPlaceholder,
@@ -105,7 +90,6 @@ import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg
       deps: [KeycloakService]
     }
   ],
->>>>>>> Stashed changes
   bootstrap: [AppComponent]
 })
 export class AppModule { }

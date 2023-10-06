@@ -1,11 +1,11 @@
 package newodoo;
 
 public enum ProjectType {
-    Task("Task"),
-    TandM("TandM"),
-    TaskAndTandM("TaskAndTandM"),
+    T("T"),
+    M("M"),
+    N("N"),
 
-    Internal("Internal");
+    I("I");
 
 
     private final String displayName;
