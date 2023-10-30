@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,7 +22,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfig {
+public class SecurityConfig {
     private final KeycloakLogoutHandler keycloakLogoutHandler;
 
     SecurityConfig(KeycloakLogoutHandler keycloakLogoutHandler) {
@@ -41,9 +42,24 @@ class SecurityConfig {
         http.logout((logout) -> logout.addLogoutHandler(keycloakLogoutHandler).logoutSuccessUrl("/"));
         */
 
-        http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/**").permitAll());
+        http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/api/program").denyAll()
+                .requestMatchers("/api/keycloak").denyAll()
+                .anyRequest().permitAll());
         return http.build();
     }
+
+//    @Order(1)
+//    @Bean
+//    public SecurityFilterChain clientFilterChain(HttpSecurity http) throws Exception {
+//        http.authorizeHttpRequests((authorize) -> authorize
+//                .antMatchers("/admin/**").hasRole("ROLE_ADMIN")
+//                .antMatchers("/**").authenticated()
+//        );
+//        http.oauth2Login(withDefaults());
+//        http.logout((logout) -> logout.addLogoutHandler(keycloakLogoutHandler).logoutSuccessUrl("/"));
+//
+//        return http.build();
+//    }
 
     @Order(2)
     @Bean
