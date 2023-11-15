@@ -1,4 +1,4 @@
-package newodoo;
+package iet.internal.new_odoo;
 
 import lombok.Getter;
 import lombok.Setter;

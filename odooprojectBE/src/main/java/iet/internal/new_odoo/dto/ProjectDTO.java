@@ -1,10 +1,8 @@
-package newodoo.dto;
+package iet.internal.new_odoo.dto;
 
+import iet.internal.new_odoo.Country;
+import iet.internal.new_odoo.ProjectType;
 import lombok.*;
-import newodoo.Country;
-import newodoo.ProjectType;
-import newodoo.entity.ProgramEntity;
-import newodoo.entity.SubProjectEntity;
 
 import java.time.LocalDate;
 import java.util.List;

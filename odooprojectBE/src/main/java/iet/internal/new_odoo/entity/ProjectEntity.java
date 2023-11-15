@@ -1,12 +1,10 @@
-package newodoo.entity;
+package iet.internal.new_odoo.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import iet.internal.new_odoo.Country;
+import iet.internal.new_odoo.ProjectType;
 import jakarta.persistence.*;
 import lombok.*;
-import newodoo.Country;
-import newodoo.ProjectType;
 import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;

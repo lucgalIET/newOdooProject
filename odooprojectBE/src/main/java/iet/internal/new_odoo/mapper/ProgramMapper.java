@@ -1,7 +1,7 @@
-package newodoo.mapper;
+package iet.internal.new_odoo.mapper;
 
-import newodoo.dto.ProgramDTO;
-import newodoo.entity.ProgramEntity;
+import iet.internal.new_odoo.dto.ProgramDTO;
+import iet.internal.new_odoo.entity.ProgramEntity;
 import org.springframework.stereotype.Component;
 
 @Component

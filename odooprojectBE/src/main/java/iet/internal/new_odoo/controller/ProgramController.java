@@ -1,5 +1,5 @@
 
-package newodoo.controller;
+package iet.internal.new_odoo.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
