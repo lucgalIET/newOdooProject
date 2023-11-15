@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
-
 import {CdkDrag, CdkDragPlaceholder, CdkDropList, CdkDropListGroup} from '@angular/cdk/drag-drop';
 
 import {MatIconModule} from '@angular/material/icon';
@@ -26,31 +27,26 @@ import { AssignProgMessageComponent } from './componenti/allAboutAssignmentProg/
 import { AssignProgNoteComponent } from './componenti/allAboutAssignmentProg/assign-prog-note/assign-prog-note.component';
 import { AssignProgActivityComponent } from './componenti/allAboutAssignmentProg/assign-prog-activity/assign-prog-activity.component';
 
-import { AdminNavbarComponent } from './componenti/admin/admin-navbar/admin-navbar.component';
-import { AdminProjectsComponent } from './componenti/admin/admin-projects/admin-projects.component';
-import { AdminProjectCreateComponent } from './componenti/admin/admin-project-create/admin-project-create.component';
-import { AdminProjActivitiesComponent } from './componenti/admin/admin-proj-activities/admin-proj-activities.component';
-import { AdminProjActivityDetailsComponent } from './componenti/admin/admin-proj-activity-details/admin-proj-activity-details.component';
-
-import { ProgettiComponent } from './componenti/progetti/progetti.component';
-import { ProjectDialogBodyComponent } from './project-dialog-body/project-dialog-body.component';
 
 
-// function initializeKeycloak(keycloak: KeycloakService) {
-//   return () =>
-//     keycloak.init({
-//       config: {
-//         url: 'http://docker.iet.it:8585',
-//         realm: 'iet-sso',
-//         clientId: 'dudu-app'
-//       },
-//       initOptions: {
-//         onLoad: 'check-sso',
-//         silentCheckSsoRedirectUri:
-//           window.location.origin + '/assets/silent-check-sso.html'
-//       }
-//     });
-// }
+ function initializeKeycloak(keycloak: KeycloakService) {
+   return () =>
+     keycloak.init({
+       config: {
+         url: 'http://192.168.2.33:8585/',
+         realm: 'iet-sso-test',
+         clientId: 'dudu-app-test'
+       },
+       initOptions: {
+         onLoad: 'check-sso',
+         silentCheckSsoRedirectUri:
+           window.location.origin + '/assets/silent-check-sso.html'
+       }
+     });
+ }
+
+
+
 
 @NgModule({
   declarations: [
@@ -64,25 +60,19 @@ import { ProjectDialogBodyComponent } from './project-dialog-body/project-dialog
     AssignProgUserComponent,
     AssignProgMessageComponent,
     AssignProgNoteComponent,
-    AssignProgActivityComponent,
-
-    AdminNavbarComponent,
-    AdminProjectsComponent,
-    AdminProjectCreateComponent,
-    ProgettiComponent,
-    ProjectDialogBodyComponent,
-    AdminProjectCreateComponent,
-    AdminProjActivityDetailsComponent,
-    AdminProjActivitiesComponent
+    AssignProgActivityComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    KeycloakAngularModule,
+    MatMenuModule,
     MatMenuModule,
     CdkDrag,
     CdkDragPlaceholder,
+    KeycloakAngularModule,
     CdkDropList,
     CdkDropListGroup,
     MatIconModule,
@@ -92,7 +82,14 @@ import { ProjectDialogBodyComponent } from './project-dialog-body/project-dialog
     MatDialogModule,
     CdkDropListGroup
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,10 @@
-package iet.internal.new_odoo.dto;
+package newodoo.dto;
 
-import iet.internal.new_odoo.Country;
 import lombok.*;
+import newodoo.Country;
+import newodoo.ProjectType;
+import newodoo.entity.ProgramEntity;
+import newodoo.entity.SubProjectEntity;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +17,7 @@ public class ProjectDTO {
     private Long id;
     //private String country;
     private Country country;
-    private String projectType;
+    private ProjectType projectType;
     private String projectName;
     private LocalDate presumedStartingMonth;
     private LocalDate presumedEndMonth;
@@ -24,6 +27,8 @@ public class ProjectDTO {
     private String linkTrello;
     private String linkGitlab;
     private String linkLogbook;
+
     //private ProgramEntity idProgram;
+
     private List<SubProjectDTO> subProjects;
 }

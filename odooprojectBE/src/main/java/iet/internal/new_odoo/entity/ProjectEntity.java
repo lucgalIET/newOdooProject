@@ -1,9 +1,12 @@
-package iet.internal.new_odoo.entity;
+package newodoo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import iet.internal.new_odoo.Country;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import newodoo.Country;
+import newodoo.ProjectType;
 import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
@@ -20,7 +23,6 @@ import java.util.List;
 @Data
 @Where(clause = "deleted = 0")
 public class ProjectEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,9 +30,10 @@ public class ProjectEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "country")
     private Country country;
+    //private String country;
 
     @Column(name = "project_type")
-    private String projectType;
+    private ProjectType projectType;
 
     @Column(name = "project_name")
     private String projectName;
@@ -65,6 +68,7 @@ public class ProjectEntity {
     private ProgramEntity idProgram;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idProject")
+    // Attributo nella classe Project che fa riferimento a SUBproject
     private List<SubProjectEntity> subProjects;
 
     @Column(name = "deleted", nullable = false, columnDefinition = "bit default 0")

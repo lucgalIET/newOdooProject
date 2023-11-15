@@ -1,0 +1,70 @@
+----------------------------------------------------------------------
+NOTE:
+
+L'idoneità alla guida deve essere verificata da un amministratore
+
+Se il campo fine_noleggio non ha valore, vuol dire che quel veicolo è ancora in noleggio quindi non è libero.
+
+Tipo_noleggio può essere: tariffa oraria, un giorno, due giorni, una settimana, un mese
+
+Il campo "tariffa oraria extra" serve se l'utente restituisce il veicolo in ritardo. Non si applica se si usa la tariffa oraria.
+
+Ogni utente ha un credito disponibile (soldi) che viene calcolato leggendo tutti i noleggi e tutte le ricariche
+
+L'indirizzo (con paese, regione, città, via, numero civico) serve per capire dove è stata lasciata la macchina dopo l'ultimo noleggio concluso
+---------------------------
+
+Valutare in futuro la possibilità di usare codici promozionali
+
+valutare in futuro la possibilità di mettere un supporto clienti
+
+-----------------------------------------------------------------------------------------
+
+Amministratore (email, Nome, Cognome, password)
+                -----
+
+Modello (Nome modello, Capacità baule, Consumo medio, Classe, per_neopatentati (boolean))
+        -------------- 
+
+Veicolo (Targa, Nome modello, Paese, Regione, Città, Via, Numero civico)
+         -----  ............
+
+Utente (Id_patente, email, Nome, Cognome, password, email_verificata (boolean), idoneità_guida (boolean), url_foto_profilo)
+        ----------
+
+Noleggio (Id_noleggio, Id_patente_utente, Targa_veicolo, Data_ora_inizio_noleggio, Data_ora_fine_noleggio, tipo_noleggio)
+          -----------  .................  .............
+
+Classe (Nome_classe, tariffa oraria, un giorno, due giorni, una settimana, un mese, tariffa oraria extra)
+        -----------  
+
+Ricarica (Id_ricarica, Id_patente_utente, Valore, Data_ora_ricarica)
+          -----------  .................
+
+Recensione (Id_recensione, Id_patente_utente, Nome modello, Targa, Data_ora_recensione, testo recensione)
+            -------------  .................  ............  .....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
